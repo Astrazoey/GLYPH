@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://3xpbyi5m8rsw"]
+
+[ext_resource type="Script" path="res://InteractiveMap.gd" id="1_8wx0k"]
+[ext_resource type="AudioStream" uid="uid://5rcx3id6k0c3" path="res://Sounds/click.ogg" id="2_xlmof"]
+
+[node name="InteractiveMap" type="Node2D"]
+script = ExtResource("1_8wx0k")
+
+[node name="AudioClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xlmof")
+pitch_scale = 1.83

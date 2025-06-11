@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj1gorsiswew7"]
+
+[ext_resource type="Script" path="res://InventoryManager.gd" id="1_sowkn"]
+[ext_resource type="AudioStream" uid="uid://5rcx3id6k0c3" path="res://Sounds/click.ogg" id="2_lqg3v"]
+[ext_resource type="AudioStream" uid="uid://cm75rqomdyu3a" path="res://Sounds/use_ability.ogg" id="3_d1xk2"]
+
+[node name="InventoryManager" type="Node2D"]
+script = ExtResource("1_sowkn")
+
+[node name="AudioClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lqg3v")
+
+[node name="MenuContainer" type="Node2D" parent="."]
+
+[node name="AudioUseAbility" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_d1xk2")
+volume_db = -3.714
+pitch_scale = 3.0

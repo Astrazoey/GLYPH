@@ -1,0 +1,34 @@
+### Dungeon rules ###
+
+Basics:
+	Dungeons will always generate in a square grid of the same size (depending on difficulty)
+	Dungeons will always make a path that starts with the start room,
+		has an artifact half way through,
+		and ends with an end room
+	There is a set maximum number of specific room types per dungeon in a given difficulty
+	Rooms will never have more than 3 connecting rooms
+
+Start Room:
+	The start room will always have at least 3 paths branching out of it
+	The start room will never generate on the edge of a dungeon
+	The rooms next to the start room will always be empty
+
+Enemies:
+	Enemies will never generate next to other enemies or teleporters
+	Enemies of the same type will always have the same stats
+	The only time enemies can be next to each other is if they swap rooms after generation (due to trap)
+	On harder difficulties, a boss will always appear next to an artifact
+
+Teleporters:
+	Teleporters will never generate next to enemies or other teleporters
+	Teleporter exits will never generate on the dungeon edges
+
+
+
+
+Warning room priority is as follows:
+	1. Tough enemies
+	2. Enemies
+	3. Mimics
+	4. Teleporters
+	5. Nothing

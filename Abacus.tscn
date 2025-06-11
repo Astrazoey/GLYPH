@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://23wxx2gmvsk2"]
+
+[ext_resource type="Script" path="res://Abacus.gd" id="1_o666o"]
+[ext_resource type="AudioStream" uid="uid://5rcx3id6k0c3" path="res://Sounds/click.ogg" id="2_3r4gy"]
+[ext_resource type="AudioStream" uid="uid://bewj4d7gpqed" path="res://Sounds/use_abacus.ogg" id="2_s7bpi"]
+
+[node name="Abacus" type="Node2D"]
+script = ExtResource("1_o666o")
+
+[node name="AudioBead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_s7bpi")
+
+[node name="AudioClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3r4gy")
