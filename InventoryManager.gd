@@ -88,11 +88,7 @@ func updateMenu():
 	
 	var movesLabel = MenuMakerHelper.addHeading("Total Moves: %d" % StoredElements.player.moveCount, 16, menuPosY, menuContainer)
 	menuPosY += movesLabel.size.y * 2
-	
-	print(StoredElements.master.difficulty)
-	print(StoredElements.master.getMaxDifficulty())
-	print(StoredElements.player.hasArtifact)
-	
+
 	if(StoredElements.master.difficulty + 1 == StoredElements.master.getMaxDifficulty()) and StoredElements.player.hasArtifact:
 		if (StoredElements.master.highestDifficultyWinCount % 3 == 0):
 			var difficultyText = "New Difficulty Unlocked! - " + StoredElements.master.getDifficultyName(StoredElements.master.getMaxDifficulty())

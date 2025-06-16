@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://d0iiydy5hsja1"]
+
+[ext_resource type="LabelSettings" uid="uid://dmegync5g3cdk" path="res://Label Settings/heading.tres" id="1_d67cd"]
+[ext_resource type="Script" path="res://SceneFadeHelper.gd" id="1_gy8hi"]
+[ext_resource type="Texture2D" uid="uid://dbxdt705r232" path="res://TemporaryIcons/GothicBrickTrimSheet.png" id="1_y8afp"]
+[ext_resource type="Script" path="res://MenuUI/ShowSaveSlots.gd" id="2_2gu2f"]
+[ext_resource type="Texture2D" uid="uid://bk2hyygfufeuh" path="res://TemporaryIcons/GothicBrickTrimSheet4.png" id="2_51g3p"]
+[ext_resource type="Script" path="res://MenuUI/QuitGame.gd" id="3_dyvhr"]
+[ext_resource type="Texture2D" uid="uid://bdlyc5025jncv" path="res://TemporaryIcons/splash_glyph.png" id="3_i1d10"]
+[ext_resource type="Script" path="res://MenuUI/ContinueLastSave.gd" id="5_jm24g"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="6_q8yyq"]
+[ext_resource type="Theme" uid="uid://dhra3q7omyggt" path="res://Themes/menu_button_theme.tres" id="6_vx7h3"]
+[ext_resource type="AudioStream" uid="uid://cr80adpsmahgn" path="res://Music/menu_theme.ogg" id="8_kko5b"]
+[ext_resource type="Script" path="res://Music.gd" id="9_a2fvb"]
+[ext_resource type="AudioStream" uid="uid://bywmw2i4cmxsy" path="res://Sounds/start_game.ogg" id="10_0v2bw"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gy8hi")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 6.0
+offset_right = 1602.0
+offset_bottom = 949.0
+texture = ExtResource("1_y8afp")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 949.0
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_51g3p")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 200
+metadata/_edit_lock_ = true
+
+[node name="MenuOptions" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+layout_mode = 2
+texture = ExtResource("3_i1d10")
+stretch_mode = 3
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+visible = false
+layout_mode = 2
+text = "Glyph"
+label_settings = ExtResource("1_d67cd")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+layout_mode = 2
+theme = ExtResource("6_q8yyq")
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("6_vx7h3")
+text = "CONTINUE FROM LAST SAVE"
+script = ExtResource("5_jm24g")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="SaveSlots" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_2gu2f")
+saveSlotCount = 10
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+layout_mode = 2
+theme = ExtResource("6_q8yyq")
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("6_vx7h3")
+text = "OPTIONS"
+
+[node name="Spacer" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("6_vx7h3")
+text = "QUIT"
+script = ExtResource("3_dyvhr")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_kko5b")
+volume_db = -1.0
+script = ExtResource("9_a2fvb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_0v2bw")
+pitch_scale = 0.81

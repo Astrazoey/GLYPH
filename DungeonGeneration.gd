@@ -75,7 +75,8 @@ func startDungeonGeneration():
 		print("Player not found.")
 
 func drawDungeon():
-	StoredDungeon.getDungeonVisualizer().setDungeon(dungeon)
+	if(StoredDungeon.getDungeonVisualizer() != null):
+		StoredDungeon.getDungeonVisualizer().setDungeon(dungeon)
 
 func drawMap():
 	StoredDungeon.dungeonSize = dungeonSize

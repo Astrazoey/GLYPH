@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0iiydy5hsja1"]
+
+[ext_resource type="LabelSettings" uid="uid://dmegync5g3cdk" path="res://Label Settings/heading.tres" id="1_d67cd"]
+[ext_resource type="Script" path="res://MenuUI/ShowSaveSlots.gd" id="2_2gu2f"]
+[ext_resource type="Script" path="res://MenuUI/QuitGame.gd" id="3_dyvhr"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 949.0
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 200
+
+[node name="MenuOptions" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+layout_mode = 2
+text = "Glyph"
+label_settings = ExtResource("1_d67cd")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+layout_mode = 2
+
+[node name="SaveSlots" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+layout_mode = 2
+script = ExtResource("2_2gu2f")
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+layout_mode = 2
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "QUIT"
+script = ExtResource("3_dyvhr")

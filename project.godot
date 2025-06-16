@@ -11,21 +11,26 @@ config_version=5
 [application]
 
 config/name="Glyph"
-run/main_scene="res://PlayablePrototype.tscn"
+run/main_scene="res://MenuUI/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/bg_color=Color(0.0901961, 0.0901961, 0.0901961, 1)
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://TemporaryIcons/splash_glyph.png"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=2000
 
 [autoload]
 
 StoredDungeon="*res://StoredDungeon.gd"
 StoredElements="*res://StoredElements.gd"
+AudioManager="*res://audio_manager.tscn"
 
 [display]
 
-window/size/viewport_width=1500
-window/size/viewport_height=875
-window/size/resizable=false
+window/size/viewport_width=1600
+window/size/viewport_height=950
+mouse_cursor/custom_image="res://TemporaryIcons/cursor.png"
 
 [dotnet]
 
@@ -33,4 +38,5 @@ project/assembly_name="Glyph"
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.137255, 0.137255, 0.137255, 1)
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

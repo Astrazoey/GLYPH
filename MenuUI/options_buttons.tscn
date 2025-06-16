@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://dupq3buu4yed8"]
+
+[ext_resource type="Theme" uid="uid://dhra3q7omyggt" path="res://Themes/menu_button_theme.tres" id="1_21otr"]
+[ext_resource type="Script" path="res://MenuUI/BackButton.gd" id="2_tv7xa"]
+
+[node name="ButtonContainer" type="VBoxContainer"]
+size_flags_vertical = 8
+
+[node name="AudioButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("1_21otr")
+disabled = true
+text = "AUDIO WIP"
+
+[node name="VisualButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("1_21otr")
+disabled = true
+text = "GRAPHICS WIP"
+
+[node name="GameplayButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("1_21otr")
+disabled = true
+text = "GAMEPLAY WIP"
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("1_21otr")
+text = "BACK"
+script = ExtResource("2_tv7xa")

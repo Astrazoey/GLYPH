@@ -71,6 +71,8 @@ script = SubResource("GDScript_muu0p")
 
 [node name="AudioClick" type="AudioStreamPlayer" parent="DungeonGeneration/Sounds"]
 stream = ExtResource("4_n3ucy")
+volume_db = -1.238
+pitch_scale = 1.5
 
 [node name="AudioBreakItem" type="AudioStreamPlayer" parent="DungeonGeneration/Sounds"]
 stream = ExtResource("4_vjnsl")

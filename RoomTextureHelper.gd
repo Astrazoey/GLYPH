@@ -14,6 +14,7 @@ var teleporterExitTexture = preload("res://TemporaryIcons/teleporter_exit.png")
 var basicEnemyTexture = preload("res://TemporaryIcons/enemy_basic.png")
 var undeadEnemyTexture = preload("res://TemporaryIcons/enemy_undead.png")
 var deadEnemyTexture = preload("res://TemporaryIcons/enemy_dead.png")
+var deadUndeadEnemyTexture = preload("res://TemporaryIcons/enemy_undead_dead.png")
 var artifactTexture = preload("res://TemporaryIcons/artifact.png")
 var mimicTexture = preload("res://TemporaryIcons/mimic.png")
 var soothsayerTexture = preload("res://TemporaryIcons/soothsayer.png")
@@ -94,12 +95,16 @@ func getRoomTexture(room):
 	elif room.getRoomType() == Room.RoomType.TELEPORTER_EXIT:
 		return teleporterExitTexture
 	elif room.getRoomType() == Room.RoomType.ENEMY:
-		if(room.isDead):
-			return deadEnemyTexture
-		elif(room.enemyType == Room.EnemyType.UNDEAD):
-			return undeadEnemyTexture
+		if(room.enemyType == Room.EnemyType.UNDEAD):
+			if(room.isDead):
+				return deadUndeadEnemyTexture
+			else:
+				return undeadEnemyTexture
 		else:
-			return basicEnemyTexture
+			if(room.isDead):
+				return deadEnemyTexture
+			else:
+				return basicEnemyTexture
 	elif room.getRoomType() == Room.RoomType.ARTIFACT:
 		return artifactTexture
 	elif room.getRoomType() == Room.RoomType.MIMIC:

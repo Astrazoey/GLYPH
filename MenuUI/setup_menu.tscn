@@ -1,0 +1,240 @@
+[gd_scene load_steps=11 format=3 uid="uid://dyoe0m3n5caji"]
+
+[ext_resource type="Script" path="res://SceneFadeHelper.gd" id="1_30eqr"]
+[ext_resource type="Texture2D" uid="uid://dbxdt705r232" path="res://TemporaryIcons/GothicBrickTrimSheet.png" id="1_ldb5n"]
+[ext_resource type="Theme" uid="uid://b21uw6m72u8is" path="res://Themes/margin_container_all_sides.tres" id="2_j76pf"]
+[ext_resource type="Texture2D" uid="uid://bdlyc5025jncv" path="res://TemporaryIcons/splash_glyph.png" id="3_nynvu"]
+[ext_resource type="Theme" uid="uid://dhra3q7omyggt" path="res://Themes/menu_button_theme.tres" id="4_6y3j3"]
+[ext_resource type="LabelSettings" uid="uid://dmegync5g3cdk" path="res://Label Settings/heading.tres" id="4_nmjdq"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="5_s2g3e"]
+[ext_resource type="LabelSettings" uid="uid://dg11wbrle5ncm" path="res://Label Settings/description.tres" id="6_k7vrm"]
+[ext_resource type="Script" path="res://MenuUI/BackButton.gd" id="8_acw7f"]
+[ext_resource type="Script" path="res://MenuUI/GoToSceneButton.gd" id="9_gyr1f"]
+
+[node name="SetupMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_30eqr")
+menu = "SETUP_MENU"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ldb5n")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="BoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_j76pf")
+
+[node name="Panel" type="Panel" parent="MarginContainer/BoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BoxContainer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_j76pf")
+theme_override_constants/margin_top = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BoxContainer/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/BoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "LOCATION"
+label_settings = ExtResource("4_nmjdq")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/BoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_s2g3e")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/BoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_nynvu")
+stretch_mode = 5
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/BoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_s2g3e")
+
+[node name="LocationInformation" type="Label" parent="MarginContainer/BoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Location: Place
+Difficulty: Hardness
+Artifacts: Artifact List"
+label_settings = ExtResource("6_k7vrm")
+
+[node name="ChangeLocationButton" type="Button" parent="MarginContainer/BoxContainer/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("4_6y3j3")
+disabled = true
+text = "CHANGE LOCATION (WIP)"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_j76pf")
+
+[node name="Panel" type="Panel" parent="MarginContainer/BoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BoxContainer/MarginContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_j76pf")
+theme_override_constants/margin_top = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BoxContainer/MarginContainer2/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/BoxContainer/MarginContainer2/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SETUP SEVERENCE"
+label_settings = ExtResource("4_nmjdq")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/BoxContainer/MarginContainer2/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_s2g3e")
+
+[node name="ShopButton" type="Button" parent="MarginContainer/BoxContainer/MarginContainer2/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("4_6y3j3")
+disabled = true
+text = "GO TO SHOP (WIP)"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/BoxContainer/MarginContainer2/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_s2g3e")
+
+[node name="ChangeWeaponButton" type="Button" parent="MarginContainer/BoxContainer/MarginContainer2/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("4_6y3j3")
+disabled = true
+text = "CHANGE WEAPON (WIP)"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/BoxContainer/MarginContainer2/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_s2g3e")
+
+[node name="PlayButton" type="Button" parent="MarginContainer/BoxContainer/MarginContainer2/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("4_6y3j3")
+text = "BEGIN SEVERENCE (WIP)"
+script = ExtResource("9_gyr1f")
+scenePath = "res://PlayablePrototype.tscn"
+
+[node name="Spacer" type="Control" parent="MarginContainer/BoxContainer/MarginContainer2/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/BoxContainer/MarginContainer2/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("4_6y3j3")
+text = "SAVE & QUIT"
+script = ExtResource("8_acw7f")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_j76pf")
+
+[node name="Panel" type="Panel" parent="MarginContainer/BoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/BoxContainer/MarginContainer3/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_j76pf")
+theme_override_constants/margin_top = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/BoxContainer/MarginContainer3/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/BoxContainer/MarginContainer3/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CLASS"
+label_settings = ExtResource("4_nmjdq")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/BoxContainer/MarginContainer3/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_s2g3e")
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/BoxContainer/MarginContainer3/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_nynvu")
+stretch_mode = 5
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/BoxContainer/MarginContainer3/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_s2g3e")
+
+[node name="ClassInformation" type="Label" parent="MarginContainer/BoxContainer/MarginContainer3/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Class: Class
+Ability: Ability
+CD: #
+HP: #
+Default Weapon: Weapon +#
+AGI: #
+DEF: #
+"
+label_settings = ExtResource("6_k7vrm")
+
+[node name="ChangeClassButton" type="Button" parent="MarginContainer/BoxContainer/MarginContainer3/Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("4_6y3j3")
+disabled = true
+text = "CHANGE CLASS (WIP)"

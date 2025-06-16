@@ -1,0 +1,114 @@
+GLYPH SHORT TERM TODO:
+	Add ghost damage
+	[COMPLETE] Add max health for classes
+	[COMPLETE] Rework glossary for playtesters
+	[COMPLETE] Main and Save menu
+	Help buttons for various menus
+	Change classes to helper class!
+	
+	Rework menu system
+	Audio options
+	Finish glossary
+	"Volunteer" class selection with random attributes
+	Interview the Volunteers
+	"Fear" stat where adventurers disobey directions
+	
+
+GLYPH MEDIUM TERM TODO:
+	Artifact types
+	Mystery glyphs which could mean 1 of 3 things
+	Add ghost damage
+	Run into 2 swap room traps before it swaps the rooms
+	Higher rewards in higher difficulties (gold, artifacts, weapons)
+	Master Shop for purchasing weapons, classes, starting advantages, starting status effects, bribes in the story
+	Status effect system
+	Temporary difficulty curve
+	Room which gives you infomation about stats
+	Sleeper Enemies will stay dormant until a set number of moves
+	
+
+META GAME STUFF:
+	- [COMPLETE] Players bring gold back which can be used to set wager
+	- [COMPLETE] Master can store up to 3 weapons and can choose if they send someone in with that weapon (and risk losing it)
+	- [COMPLETE] Player returns from the dungeon with the weapon they have
+	- [COMPLETE] Master can use a free low-damage weapon that comes with the class instead
+	- [COMPETE] Weapons have stat bonuses and debuffs depending on the enemy it's used against and who is wielding it
+
+ARTIFACT IDEAS:
+	- Increase class max HP
+	- Increase max wager
+	- Increase item slots
+	- New difficulties
+	- Increase max gold
+	- Master shop discounts / new shop items
+	- New classes
+	- Advance story
+	
+
+STATUS EFFECT IDEAS:
+	- Prevents durability loss
+	- More potion effectiveness
+	- Increased AGI
+	- Status effect protection
+
+PLAYTESTING NOTES: DIANA 1
+	- [RE-TEST] How to use the map is unclear
+	- [COMPLETE] Should change room icon on room death
+	- [COMPLETE] make an Archivist class for beginners that's only avaliable on Tutorial and Easy difficulty
+	- the directional arrows could mean something with different colors/symbols (maybe shows where you've been?)
+
+PLAYTESTING NOTES: JOREL 1
+	- [RE-TEST] need to make item switching more clear
+	- mystery warning glyphs which could mean 1 of 3 things but is consistent per dungeon
+
+PLAYTESTING NOTES: ZOE 1
+	- [COMPLETE] need one more icon for the interactive map
+	- fleeing mechanic is poggers 
+	- fugitive more balanced than you think*
+		[COMPLETE] *not really actually maybe nerf combat strength (-1, or cant use new weapons)
+	- could have a class does has -1 damage
+	- [COMPLETE] enemies should never appear next to teleporter exits
+	- [COMPLETE] close map when dungeon completed
+	- [COMPLETE] maps should generate with a pre-selected start room
+	- have maximum big rooms for higher difficulties
+	- [COMPLETE] hot switching between map icons
+	- [COMPLETE] option to destroy items/mimics
+	- [COMPLETE] think about mechanics for stealing from shops
+	- Status Effect Idea: Potions are +1 effective or -1 effective
+	- [COMPLETE] Different enemy type complement health/damage
+	- [COMPLETE] Boss enemy next to artifact
+	- [COMPLETE] Teleporter exits can disable teleporter entrances
+
+PLAYTESTING NOTES Kivory 1:
+	- Traps that work in the players favor
+	- Make paths obviously not rooms
+	- Glossary is too big at first
+	- Dodge should indicate how much damage was dodged
+	- Make the random damage clearer
+	- Zero ability class
+	- Keep notes for self
+	- Already bought shop needs to be added in glossary
+	- [FIXED] BUG: can move while fighting boss
+	- [FIXED] BUG: Appraising needs to work on empty rooms
+	- [COMPLETE] Make minimap bigger
+	- Artifacts buff player for exploration
+	- Separate Glyph Glossary and Tutorial
+
+PLAYTESTING NOTE Artemies 1:
+	- [COMPLETE] grey out icon for abilities on cooldown
+	- confirm button for resetting board
+	- undo button for map
+	- [COMPLETE] back to table of contents button
+	- BUG: sword took durability damage at some point??
+	- add another symbol for map
+	- Two enemies nearby symbol (warning room for when there's two enemies nearby)
+	- room that heals back to starting health
+	- room that gives information about the player
+
+PLAYTESTING NOTES Vacci 1:
+	- [COMPLETE] move counter
+	- rooms which trigger after a set amount of moves
+	- rooms which trigger after a trap is triggered
+
+STORY IDEAS:
+	- Confiscated weapons if you side with resistance

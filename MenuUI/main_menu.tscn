@@ -1,0 +1,80 @@
+[gd_scene load_steps=9 format=3 uid="uid://d0iiydy5hsja1"]
+
+[ext_resource type="LabelSettings" uid="uid://dmegync5g3cdk" path="res://Label Settings/heading.tres" id="1_d67cd"]
+[ext_resource type="Script" path="res://SceneFadeHelper.gd" id="1_gy8hi"]
+[ext_resource type="Texture2D" uid="uid://dbxdt705r232" path="res://TemporaryIcons/GothicBrickTrimSheet.png" id="1_y8afp"]
+[ext_resource type="Texture2D" uid="uid://bk2hyygfufeuh" path="res://TemporaryIcons/GothicBrickTrimSheet4.png" id="2_51g3p"]
+[ext_resource type="Texture2D" uid="uid://bdlyc5025jncv" path="res://TemporaryIcons/splash_glyph.png" id="3_i1d10"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="6_q8yyq"]
+[ext_resource type="PackedScene" uid="uid://cfk4gv6qylfkb" path="res://MenuUI/main_menu_buttons.tscn" id="7_tnqol"]
+[ext_resource type="AudioStream" uid="uid://bywmw2i4cmxsy" path="res://Sounds/start_game.ogg" id="10_0v2bw"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gy8hi")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_y8afp")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_right = 300
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_51g3p")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 200
+metadata/_edit_lock_ = true
+
+[node name="MenuOptions" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+layout_mode = 2
+texture = ExtResource("3_i1d10")
+stretch_mode = 3
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+visible = false
+layout_mode = 2
+text = "Glyph"
+label_settings = ExtResource("1_d67cd")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions"]
+layout_mode = 2
+theme = ExtResource("6_q8yyq")
+
+[node name="MainMenuButtons" parent="MarginContainer/PanelContainer/MarginContainer/MenuOptions" instance=ExtResource("7_tnqol")]
+layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_0v2bw")
+pitch_scale = 0.81

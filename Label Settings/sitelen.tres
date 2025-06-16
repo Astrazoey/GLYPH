@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bivse31rtwwai"]
+
+[ext_resource type="FontFile" uid="uid://ditwqinf5y2rj" path="res://Fonts/nasin sitelen musi tan nasa Topo.ttf" id="1_cgy4c"]
+
+[resource]
+line_spacing = 0.0
+font = ExtResource("1_cgy4c")
+font_size = 28
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 1)

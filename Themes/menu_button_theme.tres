@@ -1,0 +1,17 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dhra3q7omyggt"]
+
+[ext_resource type="FontFile" uid="uid://hfxiktuw7urv" path="res://Fonts/HWYGOTH.TTF" id="1_5iiu8"]
+[ext_resource type="StyleBox" uid="uid://b6mkkv4dfmtfi" path="res://Themes/menu_button_style.tres" id="2_yqisl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcspp"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 0.45098)
+shadow_color = Color(0, 0, 0, 0.721569)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[resource]
+/colors/Color = Color(0.635294, 0.635294, 0.635294, 1)
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("1_5iiu8")
+Button/styles/focus = SubResource("StyleBoxFlat_dcspp")
+Button/styles/normal = ExtResource("2_yqisl")

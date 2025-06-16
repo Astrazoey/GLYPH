@@ -1,35 +1,46 @@
-[gd_scene load_steps=9 format=3 uid="uid://bq5kikqbl1cva"]
+[gd_scene load_steps=13 format=3 uid="uid://bd1at0hgn74ct"]
 
 [ext_resource type="Script" path="res://OpenWindows.gd" id="1_e7l57"]
-[ext_resource type="Texture2D" uid="uid://cbro3bg3ofkv1" path="res://TemporaryIcons/plus_sign.png" id="2_qc7bj"]
+[ext_resource type="Texture2D" uid="uid://dbxdt705r232" path="res://TemporaryIcons/GothicBrickTrimSheet.png" id="2_2071u"]
 [ext_resource type="Script" path="res://AddMap.gd" id="3_6onpi"]
-[ext_resource type="Texture2D" uid="uid://dgtje2bt8t3kf" path="res://TemporaryIcons/plus_sign_hovered.png" id="3_f452u"]
 [ext_resource type="AudioStream" uid="uid://5rcx3id6k0c3" path="res://Sounds/click.ogg" id="4_saqcl"]
 [ext_resource type="Texture2D" uid="uid://cwupn76npm1wm" path="res://TemporaryIcons/arrowNE.png" id="5_5wf1p"]
 [ext_resource type="Script" path="res://ToggleGlossary.gd" id="5_nux1o"]
 [ext_resource type="Texture2D" uid="uid://csxpeqj5opex7" path="res://TemporaryIcons/arrowNE_hovered.png" id="6_3t0pq"]
+[ext_resource type="Theme" uid="uid://dhra3q7omyggt" path="res://Themes/menu_button_theme.tres" id="7_bda33"]
+[ext_resource type="Script" path="res://OpenGlossary.gd" id="7_pu5br"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="8_uamj3"]
+[ext_resource type="LabelSettings" uid="uid://dg11wbrle5ncm" path="res://Label Settings/description.tres" id="9_6sq21"]
+[ext_resource type="Script" path="res://MuteMusic.gd" id="11_epvcs"]
 
-[node name="Windows" type="Node2D"]
+[node name="Windows" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_e7l57")
 
-[node name="AddMap" type="TextureButton" parent="."]
-offset_left = 15.0
-offset_top = 10.0
-offset_right = 57.0
-offset_bottom = 52.0
-texture_normal = ExtResource("2_qc7bj")
-texture_hover = ExtResource("3_f452u")
-script = ExtResource("3_6onpi")
-
-[node name="AudioClick" type="AudioStreamPlayer" parent="AddMap"]
-stream = ExtResource("4_saqcl")
-pitch_scale = 1.83
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_2071u")
+stretch_mode = 1
 
 [node name="ToggleGlossary" type="TextureButton" parent="."]
-offset_left = 15.0
-offset_top = 10.0
-offset_right = 57.0
-offset_bottom = 52.0
+visible = false
+layout_mode = 0
+offset_left = 89.0
+offset_top = 3.0
+offset_right = 131.0
+offset_bottom = 45.0
 texture_normal = ExtResource("5_5wf1p")
 texture_hover = ExtResource("6_3t0pq")
 script = ExtResource("5_nux1o")
@@ -41,7 +52,87 @@ offset_top = 7.0
 offset_right = 143.0
 offset_bottom = 30.0
 text = "< Playtester Tutorial"
+label_settings = ExtResource("9_6sq21")
 
 [node name="AudioClick" type="AudioStreamPlayer" parent="ToggleGlossary"]
 stream = ExtResource("4_saqcl")
-pitch_scale = 1.83
+pitch_scale = 2.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 10
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="Options Buttons" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HowToPlayButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/Options Buttons"]
+layout_mode = 2
+theme = ExtResource("7_bda33")
+text = "How To Play"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/Options Buttons"]
+layout_mode = 2
+theme = ExtResource("8_uamj3")
+
+[node name="GlyphGlossaryButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/Options Buttons"]
+layout_mode = 2
+theme = ExtResource("7_bda33")
+text = "Glyphs"
+script = ExtResource("7_pu5br")
+glossaryName = "GLYPHS"
+glossarySize = Vector2i(620, 720)
+
+[node name="VSeparator2" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/Options Buttons"]
+layout_mode = 2
+theme = ExtResource("8_uamj3")
+
+[node name="SitelenGlossaryButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/Options Buttons"]
+layout_mode = 2
+theme = ExtResource("7_bda33")
+text = "Sitelen Translator"
+script = ExtResource("7_pu5br")
+glossaryFile = "res://GlossaryBook/sitelen_glossary.json"
+glossaryName = "SITELEN"
+glossarySize = Vector2i(520, 620)
+
+[node name="AddMapButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/Options Buttons"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("7_bda33")
+text = "+ Map"
+script = ExtResource("3_6onpi")
+
+[node name="AudioClick" type="AudioStreamPlayer" parent="MarginContainer/PanelContainer/MarginContainer/Options Buttons/AddMapButton"]
+stream = ExtResource("4_saqcl")
+pitch_scale = 2.0
+
+[node name="VSeparator3" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/Options Buttons"]
+layout_mode = 2
+theme = ExtResource("8_uamj3")
+
+[node name="ToggleMusicButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/Options Buttons"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("7_bda33")
+text = "Toggle Music"
+script = ExtResource("11_epvcs")

@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 
 var WindowHelper = preload("res://WindowHelper.gd").new()
 var MenuMakerHelper = preload("res://MenuMakerHelper.gd").new()

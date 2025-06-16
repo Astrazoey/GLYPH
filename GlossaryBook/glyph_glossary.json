@@ -1,0 +1,111 @@
+{
+  "Table of Contents": {
+	"description": "Contents of this glossary",
+	"entries": [
+	  [
+		{ "small_icon": "res://TemporaryIcons/arrowE.png" }
+	  ]
+	],
+	"entryCount": 9,
+	"entryColumns": 1,
+	"entrySize": 80
+  },
+  "Weapons": {
+	"description": "Interact with the Room Glyph to pick up weapons. Only one weapon can be carried at a time. \n!!! Weapon attack is reduced by 1 for each enemy killed !!!",
+	"entries": [
+	  [
+		{ "icon": "res://TemporaryIcons/sword.png" },
+		{ "sitelen": "󱥵󱥚󱥖󱤭󱥮" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/weapon_axe.png" },
+		{ "sitelen": "󱥵󱥚󱥖󱤭󱥳" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/weapon_hammer.png" },
+		{ "sitelen": "󱥵󱥚󱥖󱤭󱥳" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/weapon_pickaxe.png" },
+		{ "sitelen": "󱥵󱥚󱥖󱥮󱥮, 󱤃󱤃󱤉󱤌󱥭󱤌󱤂" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/weapon_shortsword.png" },
+		{ "sitelen": "󱥵󱥚󱥖󱤭,   󱥵󱥝󱤧󱥣󱥮" },
+		{ "small_icon": "res://TemporaryIcons/whetstone.png" }
+	  ]
+	],
+	"entryCount": 12,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Enemies": {
+	"description": "Click to attack enemies",
+	"entries": [
+	  [
+		{ "icon": "res://TemporaryIcons/enemy_basic.png" },
+		{ "sitelen": "󱤑󱥱󱤧 󱤂󱥵󱥩" },
+		{ "small_icon": "res://TemporaryIcons/weapon_axe.png" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/enemy_dead.png" },
+		{ "sitelen": "󱤑󱥱󱤷" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/enemy_undead.png" },
+		{ "sitelen": "󱤑󱥱󱤧 󱤂󱥵󱥩" },
+		{ "small_icon": "res://TemporaryIcons/weapon_hammer.png" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/enemy_undead_dead.png" },
+		{ "sitelen": "󱤑󱥱󱤷" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/boss.png" },
+		{ "sitelen": "󱤑󱥱󱥵󱤧 󱤂󱥵󱥩" },
+		{ "small_icon": "res://TemporaryIcons/sword.png" }
+	  ]
+	],
+	"entryCount": 10,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Warnings": {
+	"description": "Rooms warning of nearby threats",
+	"entries": [
+	  [
+		{ "icon": "res://TemporaryIcons/enemy_warning.png" },
+		{ "sitelen": "󱤑󱥱󱥒" },
+		{ "small_icon": "res://TemporaryIcons/enemy_basic.png" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/boss_warning.png" },
+		{ "sitelen": "󱤑󱥱󱥵󱥒" },
+		{ "small_icon": "res://TemporaryIcons/boss.png" }
+	  ]
+	],
+	"entryCount": 10,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Information": {
+	"description": "Icons displaying information",
+	"entries": [
+	  [
+		{ "icon": "res://TemporaryIcons/enemy_health.png" },
+		{ "sitelen": "󱥳󱥛" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/enemy_health2.png" },
+		{ "sitelen": "󱥮󱥛" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/enemy_health3.png" },
+		{ "sitelen": "󱥳󱥮󱥛" }
+	  ]
+	],
+	"entryCount": 10,
+	"entryColumns": 2,
+	"entrySize": 14
+  }
+}

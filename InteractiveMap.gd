@@ -88,6 +88,7 @@ func _ready():
 	WindowHelper.focusOnMouseHover(get_window())
 
 	
+@warning_ignore("unused_parameter")
 func _process(delta):
 	followerSprite.global_position = get_global_mouse_position()
 	
@@ -157,13 +158,13 @@ func _input(event):
 		get_window().grab_focus()
 	
 
-func getButtonAtPosition(position):
+func getButtonAtPosition(pos):
 	for child in get_children():
-		if child is TextureButton and child.get_rect().has_point(position):
+		if child is TextureButton and child.get_rect().has_point(pos):
 			return child
 
-func clickCell(position, buttonIndex):	
-	var button = getButtonAtPosition(position)
+func clickCell(pos, buttonIndex):	
+	var button = getButtonAtPosition(pos)
 	
 		
 	var textureCycles = {
@@ -177,7 +178,7 @@ func clickCell(position, buttonIndex):
 		CellOptions.TAB: [cellTextures["empty"], cellTextures["tab"], cellTextures["tab_selected"]]
 	}
 	
-	var pathTextures = {
+	var pathTexturesDictionary = {
 		"left_right": [pathTextures["empty"], pathTextures["dotted_left_right"], pathTextures["left_right"]],
 		"up_down": [pathTextures["empty"], pathTextures["dotted_up_down"], pathTextures["up_down"]],
 		"diagonal": [pathTextures["empty"], pathTextures["dotted_diagonal_1"], pathTextures["diagonal_1"], pathTextures["dotted_diagonal_2"], pathTextures["diagonal_2"]]
@@ -203,21 +204,21 @@ func clickCell(position, buttonIndex):
 				
 		if button.get_meta("type") == "path":
 			if button.get_meta("path_type") == "left_right":
-				var textures = pathTextures["left_right"]
+				var textures = pathTexturesDictionary["left_right"]
 				if button.texture_normal in textures:
 					if button.texture_normal != textures[0]:
 						button.texture_normal = textures[0]
 					else:
 						button.texture_normal = textures[index]
 			elif button.get_meta("path_type") == "up_down":
-				var textures = pathTextures["up_down"]
+				var textures = pathTexturesDictionary["up_down"]
 				if button.texture_normal in textures:
 					if button.texture_normal != textures[0]:
 						button.texture_normal = textures[0]
 					else:
 						button.texture_normal = textures[index]
 			elif button.get_meta("path_type") == "diagonal":
-				var textures = pathTextures["diagonal"]
+				var textures = pathTexturesDictionary["diagonal"]
 				if button.texture_normal in textures:
 					if button.texture_normal == textures[3] or button.texture_normal == textures[4]:
 						button.texture_normal = textures[0]
@@ -246,6 +247,7 @@ func createGridButton(texture, posX, posY, size):
 func generateGrid():
 	# Generate the Grid
 	
+	@warning_ignore("integer_division")
 	gridSize = StoredDungeon.dungeonSize + StoredDungeon.dungeonSize/2
 	if(gridSize % 2 == 0):
 		gridSize += 1
@@ -285,11 +287,11 @@ func generateGrid():
 				paths[pathIndex][x].append(pathButton)
 		pathIndex += 1
 
-func createButton(texture, position, scale, callback, arg, buttonList):
+func createButton(texture, pos, btnScale, callback, arg, buttonList):
 	var button = TextureButton.new()
 	button.texture_normal = texture
-	button.position = position
-	button.scale = scale
+	button.position = pos
+	button.scale = btnScale
 	button.connect("pressed", callback.bind(button, arg))
 	add_child(button)
 	buttonList.append(button)
@@ -299,7 +301,7 @@ func generateOptionsMenu():
 	# Initial positions
 	var posX = mapSize
 	var posY = optionSize
-	var scale = Vector2(0.25, 0.25)
+	var btnScale = Vector2(0.25, 0.25)
 
 	var cellButtons = [
 		{ "texture": cellTextures["start_selected"], "option": CellOptions.START },
@@ -314,12 +316,12 @@ func generateOptionsMenu():
 
 	posY += optionSize # gap
 	for buttonData in cellButtons:
-		createButton(buttonData.texture, Vector2(posX, posY), scale, selectCellOption, buttonData.option, cellOptionButtons)
+		createButton(buttonData.texture, Vector2(posX, posY), btnScale, selectCellOption, buttonData.option, cellOptionButtons)
 		posY += optionSize * 1.5
 
 	# Clear Board Option
 	posY += optionSize # gap
-	var clearButton = createButton(optionsTextures["clear"], Vector2(posX, posY), scale, empty, null, cellOptionButtons)
+	var clearButton = createButton(optionsTextures["clear"], Vector2(posX, posY), btnScale, empty, null, cellOptionButtons)
 	clearButton.set_meta("type", "clear")
 
 func playSound():
@@ -361,7 +363,7 @@ func deselectAllCellOptions():
 		if button.texture_normal in textureMap:
 			button.texture_normal = textureMap[button.texture_normal]
 
-func empty(arg1, arg2):
+func empty():
 	return
 	
 func closeWindow():
@@ -379,8 +381,6 @@ func autofillBoard(room, startX, startY):
 	
 	var positionX = room.posX + startOffsetX
 	var positionY = room.posY + startOffsetY
-	
-	
 	
 	
 	# The Cell Itself

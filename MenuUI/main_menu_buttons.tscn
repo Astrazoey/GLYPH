@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfk4gv6qylfkb"]
+
+[ext_resource type="Theme" uid="uid://dhra3q7omyggt" path="res://Themes/menu_button_theme.tres" id="1_gi81x"]
+[ext_resource type="Script" path="res://MenuUI/ContinueLastSave.gd" id="2_47o7e"]
+[ext_resource type="Script" path="res://MenuUI/ShowSaveSlots.gd" id="3_0lhfr"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="4_2ed34"]
+[ext_resource type="Script" path="res://MenuUI/OptionsButton.gd" id="5_i8443"]
+[ext_resource type="Script" path="res://MenuUI/QuitGame.gd" id="5_s50t6"]
+
+[node name="ButtonContainer" type="VBoxContainer"]
+size_flags_vertical = 8
+
+[node name="ContinueButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("1_gi81x")
+text = "CONTINUE FROM LAST SAVE"
+script = ExtResource("2_47o7e")
+
+[node name="HSeparator3" type="HSeparator" parent="."]
+layout_mode = 2
+theme = ExtResource("4_2ed34")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="SaveSlots" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("3_0lhfr")
+saveSlotCount = 10
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
+theme = ExtResource("4_2ed34")
+
+[node name="OptionsButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("1_gi81x")
+text = "OPTIONS"
+script = ExtResource("5_i8443")
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("1_gi81x")
+text = "QUIT"
+script = ExtResource("5_s50t6")

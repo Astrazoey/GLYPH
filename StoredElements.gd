@@ -6,6 +6,10 @@ var dungeonGenerator
 var windowManager
 var inventoryManager
 var playing
+var saveData = {}
+var saveSlot = -1
+
+var menu = "BOOT"
 
 func setPlayer(newPlayer):
 	player = newPlayer

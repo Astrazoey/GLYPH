@@ -5,6 +5,7 @@ var Player = preload("res://Player.gd")
 var Room = preload("res://Room.gd")
 var MenuMakerHelper = preload("res://MenuMakerHelper.gd").new()
 var SaveGameHelper = preload("res://SaveGameHelper.gd").new()
+var SceneFadeHelper = preload("res://SceneFadeHelper.gd").new()
 @onready var menuContainer = $"MasterMenu"
 
 # Stats
@@ -68,7 +69,7 @@ func _ready():
 	var viewport_size = get_viewport_rect().size
 	var menu_size = get_viewport_rect().size
 	get_node("MasterMenu").position.x = ((viewport_size.x - menu_size.x) / 2 + (menu_size.x / 2))
-	updateMainMenu()
+	loadGameSlot()
 
 func getRewards(goldAmount, hasArtifact):
 	gold += goldAmount
@@ -97,19 +98,6 @@ func addWeaponButton(index, posY):
 		weaponButton.disabled = true
 	
 	return weaponButton
-
-func updateMainMenu():
-	get_node("AudioClick").play()
-	MenuMakerHelper.clearMenu(menuContainer)
-	menuPositionY = 22
-	
-	addHeadingAndAdvanceY("GLYPH MAIN MENU", 26, 2)
-	for i in saveSlotCount:
-		addTextButtonAndAdvanceY("LOAD SLOT %d" % (i+1), 22, loadGame.bind(i), 1.25)
-	
-	menuPositionY += 16
-	addTextButtonAndAdvanceY("QUIT GAME", 22, quitGame.bind(), 1)
-
 	
 func addHeadingAndAdvanceY(title, fontSize, spacing):
 	var heading = MenuMakerHelper.addHeading(title, fontSize, menuPositionY, menuContainer)
@@ -186,13 +174,10 @@ func setWeapon(index):
 	weaponStr = weaponStrengths[index]
 	updateWeaponButtonDisplays()
 	
-func quitGame():
-	saveGame(saveSlot)
-	get_tree().quit()
-	
 func backToMainMenu():
-	saveGame(saveSlot)
-	updateMainMenu()
+	saveGame(StoredElements.saveSlot)
+	SceneFadeHelper.fadeScene(StoredElements.windowManager, null, "res://MenuUI/main_menu.tscn", 1)
+	get_parent().queue_free()
 
 func playMenuSound():
 	get_node("AudioClick").play()
@@ -265,9 +250,9 @@ func getWeaponName(index):
 	
 	return buttonStr
 	
-func getDifficultyName(difficulty):
+func getDifficultyName(difficultyCheck):
 	var difficultyText = ""
-	match difficulty:
+	match difficultyCheck:
 		0:
 			difficultyText = "TUTORIAL"
 		1:
@@ -310,6 +295,7 @@ func getMaxDifficulty():
 	
 func saveGame(slot):
 	var saveData = {
+		"saveSlot" : slot,
 		"gold": gold,
 		"artifactCount": artifactCount,
 		"weapons": weapons,
@@ -319,15 +305,17 @@ func saveGame(slot):
 	
 	SaveGameHelper.saveGame(saveData, slot)
 
-func loadGame(slot: int):
-	saveSlot = slot
-	var outputVariables = {}
-	outputVariables = SaveGameHelper.loadGame(slot, outputVariables)
+func loadGameSlot():
+	var outputVariables = StoredElements.saveData
 	
+	if(outputVariables == {}):
+		outputVariables = SaveGameHelper.startDefaultSave(-1)
+	
+	StoredElements.saveSlot = outputVariables.saveSlot
 	gold = outputVariables.gold
 	artifactCount = outputVariables.artifactCount
 	weapons = outputVariables.weapons
 	weaponStrengths = outputVariables.weaponStrengths
 	highestDifficultyWinCount = outputVariables.winCount
 	
-	updateMenu()
+	updateMenu()	

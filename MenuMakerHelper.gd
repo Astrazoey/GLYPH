@@ -1,5 +1,7 @@
 extends Node
 
+var font = preload("res://Fonts/HWYGOTH.TTF")
+
 func clearMenu(container):
 	for child in container.get_children():
 		child.queue_free()
@@ -8,13 +10,14 @@ func makeNewLabel(text, fontSize):
 	var heading = Label.new()
 	heading.text = text
 	heading.set("theme_override_font_sizes/font_size", fontSize)
+	heading.set("theme_override_fonts/font", font)
 	heading.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	heading.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	return heading
 
 func addHeading(text, fontSize, posY, container):	
 	var heading = makeNewLabel(text, fontSize)
-	var font = ThemeDB.fallback_font.duplicate()
+	#var font = ThemeDB.fallback_font.duplicate()
 	heading.add_theme_font_override("font", font)
 	heading.add_theme_font_size_override("font_size", fontSize)
 	var text_size: Vector2 = font.get_string_size(text, HORIZONTAL_ALIGNMENT_CENTER, -1, fontSize)
@@ -24,8 +27,10 @@ func addHeading(text, fontSize, posY, container):
 	
 func addTextButton(text, fontSize, method, posY, container):
 	var button = Button.new()
+	var labelSettings = load("res://Label Settings/description.tres")
 	button.text = text
 	button.set("theme_override_font_sizes/font_size", fontSize)
+	button.set("theme_override_fonts/font", font)
 	button.alignment = HORIZONTAL_ALIGNMENT_CENTER
 	button.connect("pressed", method)
 	container.add_child(button)

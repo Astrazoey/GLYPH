@@ -1,0 +1,121 @@
+{
+  "Table of Contents | Sitelen": {
+	"description": "Contents of this glossary",
+	"entries": [
+	  [
+		{ "small_icon": "res://TemporaryIcons/arrowE.png" }
+	  ]
+	],
+	"entryCount": 9,
+	"entryColumns": 1,
+	"entrySize": 80
+  },
+  "Objects": {
+	"description": "Rough translations of Sitelen Pona",
+	"entries": [
+	  [
+		{ "sitelen": "󱤌" },
+		{ "text": "object / thing" }
+	  ],
+	  [
+		{ "sitelen": "󱤑" },
+		{ "text": "person / being" }
+	  ],
+	  [
+		{ "sitelen": "󱥭" },
+		{ "text" : "room / building"}
+	  ]
+	],
+	"entryCount": 9,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Counting": {
+	"description": "Rough translations of Sitelen Pona",
+	"entries": [
+	  [
+		{ "sitelen": "󱥳" },
+		{ "text": "one / unique / unite" }
+	  ],
+	  [
+		{ "sitelen": "󱥮" },
+		{ "text": "two" }
+	  ],
+	  [
+		{ "sitelen": "󱤭" },
+		{ "text": "hand / arm / five" }
+	  ]
+	],
+	"entryCount": 9,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Grammar": {
+	"description": "Rough translations of Sitelen Pona",
+	"entries": [
+	  [
+		{ "sitelen": "󱤧" },
+		{ "text": "is / are" }
+	  ],
+	  [
+		{ "sitelen": "󱤉" },
+		{ "text": "refering to object" }
+	  ],
+	  [
+		{ "sitelen": "󱤂" },
+		{ "text": "negation / no / without / not" }
+	  ],
+	  [
+		{ "sitelen": "󱥩" },
+		{ "text" : "towards / to / for / move"}
+	  ],
+	],
+	"entryCount": 9,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Concepts": {
+	"description": "Rough translations of Sitelen Pona",
+	"entries": [
+	  [
+		{ "sitelen": "󱥱" },
+		{ "text" : "fight / conflict / compete"}
+	  ],
+	  [
+		{ "sitelen": "󱥵" },
+		{ "text" : "power / strength"}
+	  ],
+	  [
+		{ "sitelen": "󱤷" },
+		{ "text" : "death"}
+	  ],
+	  [
+		{ "sitelen": "󱥒" },
+		{ "text" : "near / beside"}
+	  ],
+	  [
+		{ "sitelen": "󱥛" },
+		{ "text" : "body / health"}
+	  ],
+	  [
+		{ "sitelen": "󱥚" },
+		{ "text" : "high / heavenly / above"}
+	  ],
+	  [
+		{ "sitelen": "󱥝" },
+		{ "text" : "new / another"}
+	  ],
+	  [
+		{ "sitelen": "󱥖" },
+		{ "text" : "same / similar"}
+	  ],
+	  [
+		{ "sitelen": "󱤃" },
+		{ "text" : "hunt / search"}
+	  ]
+	],
+	"entryCount": 9,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+}

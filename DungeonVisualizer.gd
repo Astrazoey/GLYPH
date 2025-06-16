@@ -96,8 +96,8 @@ func drawPaths(x, y, center):
 		var target_x = x + int(offset.x)
 		var target_y = y + int(offset.y)
 
-		# Check to see if rooms can connect
-		var in_bounds = target_x >= 0 && target_x < dungeonSize && target_y >= 0 && target_y < dungeonSize
+		# Check to see if rooms are in bounds
+		#var in_bounds = target_x >= 0 && target_x < dungeonSize && target_y >= 0 && target_y < dungeonSize
 
 		if room.getExit(dir): #and in_bounds:
 			draw_line(center, center + offset * cellSize, Color(1, 1, 1))

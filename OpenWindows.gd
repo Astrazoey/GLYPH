@@ -1,7 +1,8 @@
-extends Node2D
+extends Control
 
 var Room = preload("res://Room.gd")
 var WindowHelper = preload("res://WindowHelper.gd").new()
+var SceneFadeHelper = preload("res://SceneFadeHelper.gd").new()
 
 var glossaryScene = preload("res://Glossary.tscn").instantiate()
 var dungeonScene = preload("res://Generation Logic.tscn").instantiate()
@@ -23,6 +24,8 @@ var offset = 128
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	SceneFadeHelper.fade_in(self, 3)
 	
 	StoredElements.setWindowManager(self)
 	
@@ -77,12 +80,12 @@ func openDungeonWidget():
 	var positionX = 0
 	positionY += midPointY2 - midPointY
 	positionX += midPointX - midPointX2
-	createWindow("DUNGEON", Vector2i(400, 400), true, dungeonScene, Vector2i(positionX, positionY), false, false)
+	WindowHelper.createWindow("DUNGEON", Vector2i(400, 400), true, dungeonScene, Vector2i(positionX, positionY), false, false, self)
 	
 func openMaster():
 	var positionX = midPointX
 	var positionY = 0
-	createWindow("MASTER", Vector2i(300, 1080), true, masterScene, Vector2i(positionX, positionY), true, false)
+	WindowHelper.createWindow("MASTER", Vector2i(300, 1080), true, masterScene, Vector2i(positionX, positionY), true, false, self)
 
 func openInventory():
 	var positionX = midPointX - 75
@@ -90,7 +93,7 @@ func openInventory():
 	createWindow("INVENTORY", Vector2i(450, 1080), true, inventoryScene, Vector2i(positionX, positionY), false, false)
 
 func openVisualizerWindow():
-	createWindow("VISUALIZER", Vector2i(400, 500), false, visualizerScene, Vector2i(midPointX, midPointY), false, true)
+	createWindow("CHEATY VISUALIZER", Vector2i(400, 500), false, visualizerScene, Vector2i(midPointX, midPointY), false, true)
 
 func openAbacusWindow():
 	var positionY = viewportSize.y - 320 - 400
@@ -144,14 +147,15 @@ func openSeverenceWindows():
 	mapScene.get_parent().show()
 	dungeonScene.get_parent().show()
 	masterScene.get_parent().hide()
-	if(StoredElements.master.cheats):
+	if(StoredElements.master.cheats) and (StoredDungeon.getDungeonVisualizer() != null):
 		visualizerScene.get_parent().show()
 	
 func closeSeverenceWindows():
 	abacusScene.get_parent().hide()
 	mapScene.get_parent().hide()
 	dungeonScene.get_parent().hide()
-	visualizerScene.get_parent().hide()
+	if(StoredDungeon.getDungeonVisualizer() != null):
+		visualizerScene.get_parent().hide()
 	for entry in miniMapScenes:
 		if(entry != null):
 			entry.get_parent().queue_free()

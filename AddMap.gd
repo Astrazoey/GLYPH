@@ -1,4 +1,6 @@
-extends TextureButton
+extends Button
+
+@onready var mainNode = $"../../../../.."
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,7 +14,7 @@ func openMapWindow():
 	StoredDungeon.removeNullBoards()
 	
 	if(StoredDungeon.dungeonMapNodes.size() < 6):
-		get_parent().openMapWindow(true)
+		mainNode.openMapWindow(true)
 	else:
 		show_popup_message("Ahhhhh :(", "Too many maps generated!")
 	return

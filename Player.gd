@@ -76,7 +76,6 @@ var teleporterWarningTexture = preload("res://TemporaryIcons/teleporter_warning.
 # Actions
 var fleeTexture = preload("res://TemporaryIcons/flee.png")
 var breakItemTexture = preload("res://TemporaryIcons/destroy_item.png")
-var keepWeaponTexture = preload("res://TemporaryIcons/keep_weapon.png")
 var stealTexture = preload("res://TemporaryIcons/steal.png")
 var digTexture = preload("res://TemporaryIcons/dig.png")
 
@@ -93,8 +92,6 @@ var destroyTexture = preload("res://TemporaryIcons/destroy.png")
 
 # Status
 var deathTexture = preload("res://TemporaryIcons/death.png")
-var exitWithArtifact = preload("res://TemporaryIcons/exit_with_artifact.png")
-var exitWithoutArtifact = preload("res://TemporaryIcons/exit_without_artifact.png")
 var reviveTexture = preload("res://TemporaryIcons/revive.png")
 
 # Arrows
@@ -184,7 +181,7 @@ func resetPlayerStats():
 
 func setClassStats():
 	if(characterClass == Class.ARCHIVIST):
-		startHealth = 20
+		startHealth = 10
 		maxHealth = 20
 		startArmor = 0
 		startAgility = 3
@@ -257,7 +254,8 @@ func spawnPlayer():
 	resetPlayerStats()
 	movePlayerToRoom(Room.RoomType.START)
 	StoredDungeon.setPlayer(showPlayer, playerSize, posX, posY)
-	StoredDungeon.getDungeonVisualizer().redraw()
+	if StoredDungeon.getDungeonVisualizer() != null:
+		StoredDungeon.getDungeonVisualizer().redraw()
 	updatePlayerSymbols()
 	drawMenu()
 	return
@@ -1066,7 +1064,8 @@ func swapWeapon(currentRoom):
 func redrawEverything():
 	updatePlayerSymbols()
 	StoredDungeon.setPlayer(showPlayer, playerSize, posX, posY)
-	StoredDungeon.getDungeonVisualizer().redraw()
+	if(StoredDungeon.getDungeonVisualizer() != null):
+		StoredDungeon.getDungeonVisualizer().redraw()
 	get_parent().drawDungeon()
 
 func isInNewRoom(currentRoom):

@@ -25,7 +25,7 @@ func _ready():
 func toggleGlossary():
 	
 	get_node("AudioClick").play()
-	
+		
 	if get_child_count() > 2:
 		for window in get_children():
 			if window is Window:

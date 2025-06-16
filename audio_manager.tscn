@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://01lftpikbxvk"]
+
+[ext_resource type="AudioStream" uid="uid://cr80adpsmahgn" path="res://Music/menu_theme.ogg" id="1_v4keo"]
+[ext_resource type="Script" path="res://Music.gd" id="2_osbrs"]
+[ext_resource type="AudioStream" uid="uid://5rcx3id6k0c3" path="res://Sounds/click.ogg" id="3_uqufg"]
+[ext_resource type="AudioStream" uid="uid://bywmw2i4cmxsy" path="res://Sounds/start_game.ogg" id="4_coge2"]
+
+[node name="AudioManager" type="Node"]
+
+[node name="Music" type="Node" parent="."]
+
+[node name="MainMenu" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("1_v4keo")
+volume_db = -1.0
+autoplay = true
+script = ExtResource("2_osbrs")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("3_uqufg")
+volume_db = -1.238
+pitch_scale = 1.5
+
+[node name="GameStart" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_coge2")
+pitch_scale = 0.8
