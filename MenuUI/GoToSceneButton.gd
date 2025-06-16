@@ -5,7 +5,7 @@ extends Button
 
 # Options Button
 func _ready():
-	#connect("pressed", openScene.bind())
+	connect("pressed", openScene.bind())
 	pass
 	
 func openScene():

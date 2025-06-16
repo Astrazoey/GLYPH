@@ -70,10 +70,10 @@ func updateMenu():
 			rowCounter += 1
 		
 		var weaponSlot
-		if(StoredElements.master.weapons.size() > i-1) and (StoredElements.master.weapons[i-1] > -1):
-			weaponSlot = MenuMakerHelper.createSimpleButton(RoomTextureHelper.getWeaponTexture(StoredElements.master.weapons[i-1]), RoomTextureHelper.getWeaponTexture(StoredElements.master.weapons[i-1]), Vector2(xOffset, menuPosY), menuContainer)
+		if(StoredElements.weapons.size() > i-1) and (StoredElements.weapons[i-1] > -1):
+			weaponSlot = MenuMakerHelper.createSimpleButton(RoomTextureHelper.getWeaponTexture(StoredElements.weapons[i-1]), RoomTextureHelper.getWeaponTexture(StoredElements.weapons[i-1]), Vector2(xOffset, menuPosY), menuContainer)
 			@warning_ignore("unused_variable")
-			var weaponDamage = MenuMakerHelper.createSimpleLabel("+%d" % StoredElements.master.weaponStrengths[i-1], 20, Vector2(64 + 8 + xOffset, menuPosY+16), menuContainer)
+			var weaponDamage = MenuMakerHelper.createSimpleLabel("+%d" % StoredElements.weaponStrengths[i-1], 20, Vector2(64 + 8 + xOffset, menuPosY+16), menuContainer)
 		else:
 			weaponSlot = MenuMakerHelper.createSimpleButton(emptyTexture, emptyTexture, Vector2(xOffset, menuPosY), menuContainer)
 		
@@ -90,7 +90,7 @@ func updateMenu():
 	menuPosY += movesLabel.size.y * 2
 
 	if(StoredElements.master.difficulty + 1 == StoredElements.master.getMaxDifficulty()) and StoredElements.player.hasArtifact:
-		if (StoredElements.master.highestDifficultyWinCount % 3 == 0):
+		if (StoredElements.highestDifficultyWinCount % 3 == 0):
 			var difficultyText = "New Difficulty Unlocked! - " + StoredElements.master.getDifficultyName(StoredElements.master.getMaxDifficulty())
 			var difficultyLabel = MenuMakerHelper.addHeading(difficultyText, 24, menuPosY, menuContainer)
 			menuPosY += difficultyLabel.size.y * 2
@@ -102,8 +102,8 @@ func giveWeaponToMaster(index):
 	if(StoredElements.player.weapon > -1):
 		get_node("AudioUseAbility").play()
 		
-		StoredElements.master.weapons[index] = StoredElements.player.weapon
-		StoredElements.master.weaponStrengths[index] = StoredElements.player.attack
+		StoredElements.weapons[index] = StoredElements.player.weapon
+		StoredElements.weaponStrengths[index] = StoredElements.player.attack
 	
 		StoredElements.player.weapon = -1
 		updateMenu()

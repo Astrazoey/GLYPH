@@ -1,5 +1,6 @@
 extends Node
 
+# Major Elements
 var player
 var master
 var dungeonGenerator
@@ -9,7 +10,23 @@ var playing
 var saveData = {}
 var saveSlot = -1
 
+# Current Menu
 var menu = "BOOT"
+
+# General Stats
+var gold
+var artifactCount
+var weapons = []
+var weaponStrengths = []
+var highestDifficultyWinCount
+
+# Set Up Stats
+var difficulty
+var wager
+var classId
+var weapon
+var weaponStrength
+var weaponIndex = -1
 
 func setPlayer(newPlayer):
 	player = newPlayer

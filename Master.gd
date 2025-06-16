@@ -9,16 +9,16 @@ var SceneFadeHelper = preload("res://SceneFadeHelper.gd").new()
 @onready var menuContainer = $"MasterMenu"
 
 # Stats
-var gold = 15
-var artifactCount = 0
+#var gold = 15
+#var artifactCount = 0
 
 # Saving
-var saveSlot = 0
+#var saveSlot = 0
 @export var saveSlotCount: int = 3
 
 # Weapons
-var weapons = []
-var weaponStrengths = []
+#var weapons = []
+#var weaponStrengths = []
 var weaponIndex = -1
 var weaponSlotCount = 3
 
@@ -72,11 +72,11 @@ func _ready():
 	loadGameSlot()
 
 func getRewards(goldAmount, hasArtifact):
-	gold += goldAmount
+	StoredElements.gold += goldAmount
 	if(hasArtifact):
-		artifactCount += 1
+		StoredElements.artifactCount += 1
 		if(difficulty == maxAvaliableDifficulty):
-			highestDifficultyWinCount += 1
+			StoredElements.highestDifficultyWinCount += 1
 
 func addAdjusters(incrementTexture, incrementTextureHovered, decrementTexture, decrementTextureHovered, incrementMethod, decrementMethod, posY):
 	@warning_ignore("integer_division")
@@ -85,16 +85,16 @@ func addAdjusters(incrementTexture, incrementTextureHovered, decrementTexture, d
 	MenuMakerHelper.addTextureButton(decrementTexture, decrementTextureHovered, decrementMethod, Vector2(0.5, 0.5), Vector2(-84, posY + (40 / 16)), menuContainer)
 
 func addWeaponButton(index, posY):
-	if(index+1 > weapons.size()):
-		weapons.resize(index+1)
-		weapons[index] = -1
+	if(index+1 > StoredElements.weapons.size()):
+		StoredElements.weapons.resize(index+1)
+		StoredElements.weapons[index] = -1
 		
-	if(index+1 > weaponStrengths.size()):
-		weaponStrengths.resize(index+1)
-		weaponStrengths[index] = -1
+	if(index+1 > StoredElements.weaponStrengths.size()):
+		StoredElements.weaponStrengths.resize(index+1)
+		StoredElements.weaponStrengths[index] = -1
 
 	var weaponButton = MenuMakerHelper.addTextButton(getWeaponName(index), 16, setWeapon.bind(index), posY, menuContainer)
-	if(weapons[index] < 0):
+	if(StoredElements.weapons[index] < 0):
 		weaponButton.disabled = true
 	
 	return weaponButton
@@ -113,15 +113,15 @@ func updateMenu():
 	MenuMakerHelper.clearMenu(menuContainer)
 	
 	# Make sure wager can't be set higher than gold amount
-	wager = min(wager, gold)
+	wager = min(wager, StoredElements.gold)
 	
 	get_node("AudioClick").play()
 	
 	menuPositionY = 22
 
 	# Stats
-	addHeadingAndAdvanceY("Kings: %d" % gold, 16, 1.25)
-	addHeadingAndAdvanceY("Artifacts: %d" % artifactCount, 16, 2)
+	addHeadingAndAdvanceY("Kings: %d" % StoredElements.gold, 16, 1.25)
+	addHeadingAndAdvanceY("Artifacts: %d" % StoredElements.artifactCount, 16, 2)
 	# Title
 	addHeadingAndAdvanceY("SEVERENCE SETUP", 26, 2)
 	# Class
@@ -144,7 +144,7 @@ func updateMenu():
 		menuPositionY += weaponButton.size.y * 1.1
 
 	var defaultWeaponText = "Default Weapon"
-	if(weaponIndex == -1):
+	if(StoredElements.weaponIndex == -1):
 		defaultWeaponText = "-> Default Weapon"
 		
 	defaultWeaponDisplay = addTextButtonAndAdvanceY(defaultWeaponText, 16, weaponDefault.bind(), 2)
@@ -153,29 +153,29 @@ func updateMenu():
 
 func updateWeaponButtonDisplays():
 	var i = 0
-	for w in weapons:
+	for w in StoredElements.weapons:
 		if(i < weaponDisplays.size()):
 			updateButtonDisplay(weaponDisplays[i], getWeaponName(i))
 			i += 1
 	
-	if(weaponIndex == -1):	
+	if(StoredElements.weaponIndex == -1):	
 		updateButtonDisplay(defaultWeaponDisplay, "-> Default Weapon")
 	else:
 		updateButtonDisplay(defaultWeaponDisplay, "Default Weapon")
 
 func weaponDefault():
-	weaponIndex = -1
+	StoredElements.weaponIndex = -1
 	updateWeaponButtonDisplays()
 	
 func setWeapon(index):
 	defaultWeapon = false
-	weaponIndex = index
-	weapon = weapons[index]
-	weaponStr = weaponStrengths[index]
+	StoredElements.weaponIndex = index
+	StoredElements.weapon = StoredElements.weapons[index]
+	StoredElements.weaponStr = StoredElements.weaponStrengths[index]
 	updateWeaponButtonDisplays()
 	
 func backToMainMenu():
-	saveGame(StoredElements.saveSlot)
+	SaveGameHelper.saveGame(StoredElements.saveSlot)
 	SceneFadeHelper.fadeScene(StoredElements.windowManager, null, "res://MenuUI/main_menu.tscn", 1)
 	get_parent().queue_free()
 
@@ -187,8 +187,8 @@ func startGame():
 	isPlaying = true
 	StoredElements.windowManager.openSeverenceWindows()
 	
-	gold -= wager
-	gold = max(gold, 0)
+	StoredElements.gold -= wager
+	StoredElements.gold = max(StoredElements.gold, 0)
 	
 	var difficultiesEnum = preload("res://DungeonGeneration.gd").Difficulties  # Load the enum from Player.gd
 	StoredElements.dungeonGenerator.difficulty = difficultiesEnum[getDifficultyById(difficulty)]
@@ -196,10 +196,10 @@ func startGame():
 	StoredElements.player.updateCharacterStats(StoredElements.player.Class[getClassById(classId)], wager)
 	
 	
-	if(weaponIndex > -1):
-		StoredElements.player.updateCharacterWeapon(weapon, weaponStr)
-		weapons[weaponIndex] = -1
-	weaponIndex = -1
+	if(StoredElements.weaponIndex > -1):
+		StoredElements.player.updateCharacterWeapon(StoredElements.weapon, StoredElements.weaponStr)
+		StoredElements.weapons[StoredElements.weaponIndex] = -1
+	StoredElements.weaponIndex = -1
 	
 	StoredElements.player.updatePlayerSymbols()
 	updateMenu()
@@ -216,7 +216,7 @@ func updateButtonDisplay(button, text):
 	playMenuSound()
 	
 func incrementWager(amount):
-	wager = clamp(wager + amount, 0, min(gold, maxWager))
+	wager = clamp(wager + amount, 0, min(StoredElements.gold, maxWager))
 	updateButtonDisplay(wagerDisplay, str(wager))
 	
 func incrementClass(amount):
@@ -230,23 +230,23 @@ func incrementDifficulty(amount):
 	
 func getWeaponName(index):
 	var buttonStr = "Empty"
-	if(weapons[index] > -1):
+	if(StoredElements.weapons[index] > -1):
 		buttonStr = ""
-		if(weaponIndex == index):
+		if(StoredElements.weaponIndex == index):
 			buttonStr += "-> "
 		
-		if(weapons[index] == Room.WeaponType.SWORD):
+		if(StoredElements.weapons[index] == Room.WeaponType.SWORD):
 			buttonStr += "Sword"
-		elif(weapons[index] == Room.WeaponType.AXE):
+		elif(StoredElements.weapons[index] == Room.WeaponType.AXE):
 			buttonStr += "Axe"
-		elif(weapons[index] == Room.WeaponType.HAMMER):
+		elif(StoredElements.weapons[index] == Room.WeaponType.HAMMER):
 			buttonStr += "Hammer"
-		elif(weapons[index] == Room.WeaponType.PICKAXE):
+		elif(StoredElements.weapons[index] == Room.WeaponType.PICKAXE):
 			buttonStr += "Pickaxe"
-		elif(weapons[index] == Room.WeaponType.SHORTSWORD):
+		elif(StoredElements.weapons[index] == Room.WeaponType.SHORTSWORD):
 			buttonStr += "Shortsword"
 			
-		buttonStr += " +" + str(weaponStrengths[index])
+		buttonStr += " +" + str(StoredElements.weaponStrengths[index])
 	
 	return buttonStr
 	
@@ -288,23 +288,11 @@ func getMaxClasses():
 
 func getMaxDifficulty():
 	@warning_ignore("integer_division")
-	maxAvaliableDifficulty = (highestDifficultyWinCount / 3) + 1
+	maxAvaliableDifficulty = (StoredElements.highestDifficultyWinCount / 3) + 1
 	maxAvaliableDifficulty = max(1, maxAvaliableDifficulty)
 	maxAvaliableDifficulty = min(maxDifficulty, maxAvaliableDifficulty)
 	return maxAvaliableDifficulty
 	
-func saveGame(slot):
-	var saveData = {
-		"saveSlot" : slot,
-		"gold": gold,
-		"artifactCount": artifactCount,
-		"weapons": weapons,
-		"weaponStrengths": weaponStrengths,
-		"winCount" : highestDifficultyWinCount
-	}
-	
-	SaveGameHelper.saveGame(saveData, slot)
-
 func loadGameSlot():
 	var outputVariables = StoredElements.saveData
 	
@@ -312,10 +300,10 @@ func loadGameSlot():
 		outputVariables = SaveGameHelper.startDefaultSave(-1)
 	
 	StoredElements.saveSlot = outputVariables.saveSlot
-	gold = outputVariables.gold
-	artifactCount = outputVariables.artifactCount
-	weapons = outputVariables.weapons
-	weaponStrengths = outputVariables.weaponStrengths
-	highestDifficultyWinCount = outputVariables.winCount
+	StoredElements.gold = outputVariables.gold
+	StoredElements.artifactCount = outputVariables.artifactCount
+	StoredElements.weapons = outputVariables.weapons
+	StoredElements.weaponStrengths = outputVariables.weaponStrengths
+	StoredElements.highestDifficultyWinCount = outputVariables.winCount
 	
 	updateMenu()	

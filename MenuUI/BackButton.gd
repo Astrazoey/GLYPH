@@ -15,4 +15,4 @@ func openMainMenu():
 	sceneRoot.add_child(load("res://MenuUI/main_menu.tscn").instantiate())
 	AudioManager.get_node("Sounds/ButtonClick").play()
 	print("Saving game at slot", StoredElements.saveSlot)
-	SaveGameHelper.saveGame(StoredElements.saveData, StoredElements.saveSlot)
+	SaveGameHelper.saveGame(StoredElements.saveSlot)

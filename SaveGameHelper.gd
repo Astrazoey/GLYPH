@@ -1,7 +1,10 @@
 extends Node
 
 
-func saveGame(saveData, slot):
+func saveGame(slot):
+	
+	var saveData = updateSaveData(slot)
+	
 	var file = FileAccess.open("user://save_slot_%d.save" % slot, FileAccess.WRITE)
 	file.store_string(JSON.stringify(saveData))
 	file.close()
@@ -87,3 +90,15 @@ func getLastSaveSlot():
 	var metadata = loadAllSlotMetadata()
 	
 	return metadata.get("lastSave", -1)
+
+func updateSaveData(slot):
+	var saveData = {
+		"saveSlot" : slot,
+		"gold": StoredElements.gold,
+		"artifactCount": StoredElements.artifactCount,
+		"weapons": StoredElements.weapons,
+		"weaponStrengths": StoredElements.weaponStrengths,
+		"winCount" : StoredElements.highestDifficultyWinCount
+	}
+	
+	return saveData

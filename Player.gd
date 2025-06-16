@@ -316,7 +316,7 @@ func win():
 func returnToMenu():
 	StoredElements.master.isPlaying = false
 	StoredElements.master.updateMenu()
-	StoredElements.master.saveGame(StoredElements.master.saveSlot)
+	StoredElements.saveGame(StoredElements.saveSlot)
 	
 	StoredElements.windowManager.closeSeverenceWindows()
 	StoredElements.windowManager.openMasterWindow()
