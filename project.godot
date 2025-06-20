@@ -28,8 +28,11 @@ AudioManager="*res://audio_manager.tscn"
 
 [display]
 
-window/size/viewport_width=1600
-window/size/viewport_height=950
+window/size/viewport_width=1536
+window/size/viewport_height=864
+window/size/mode=2
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 mouse_cursor/custom_image="res://TemporaryIcons/cursor.png"
 
 [dotnet]
@@ -38,5 +41,5 @@ project/assembly_name="Glyph"
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=2
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

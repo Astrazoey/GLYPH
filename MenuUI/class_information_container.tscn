@@ -1,0 +1,118 @@
+[gd_scene load_steps=10 format=3 uid="uid://cugwdlm43ywyv"]
+
+[ext_resource type="Script" path="res://MenuUI/ClassDisplay.gd" id="1_24b5c"]
+[ext_resource type="Texture2D" uid="uid://bdlyc5025jncv" path="res://TemporaryIcons/splash_glyph.png" id="2_8vljs"]
+[ext_resource type="LabelSettings" uid="uid://dmegync5g3cdk" path="res://Label Settings/heading.tres" id="3_xf6wq"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="4_00nqd"]
+[ext_resource type="Theme" uid="uid://s8w5rxc718i4" path="res://Themes/rounded_panel_theme.tres" id="5_n3lgi"]
+[ext_resource type="Theme" uid="uid://b21uw6m72u8is" path="res://Themes/margin_container_all_sides.tres" id="5_ss85l"]
+[ext_resource type="LabelSettings" uid="uid://dg11wbrle5ncm" path="res://Label Settings/description.tres" id="6_67fxw"]
+[ext_resource type="Texture2D" uid="uid://b5m5knydts2of" path="res://TemporaryIcons/appraise.png" id="7_mkoil"]
+[ext_resource type="Texture2D" uid="uid://bsq6hco5jomsn" path="res://TemporaryIcons/weapon_axe.png" id="8_b2svh"]
+
+[node name="ClassInformationContainer" type="VBoxContainer"]
+script = ExtResource("1_24b5c")
+
+[node name="ClassImage" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_8vljs")
+stretch_mode = 3
+
+[node name="ClassNameLabel" type="Label" parent="."]
+layout_mode = 2
+text = "CLASS NAME"
+label_settings = ExtResource("3_xf6wq")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+theme = ExtResource("4_00nqd")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("5_n3lgi")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme = ExtResource("5_ss85l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="AbilityBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Ability 1 "
+label_settings = ExtResource("6_67fxw")
+
+[node name="Ability1DisplayTexture" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("7_mkoil")
+stretch_mode = 3
+
+[node name="CooldownLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "##"
+label_settings = ExtResource("6_67fxw")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Ability 2"
+label_settings = ExtResource("6_67fxw")
+
+[node name="Ability1DisplayTexture" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("7_mkoil")
+
+[node name="CooldownLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "##"
+label_settings = ExtResource("6_67fxw")
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_00nqd")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Weapon"
+label_settings = ExtResource("6_67fxw")
+
+[node name="WeaponDisplayTexture" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("8_b2svh")
+
+[node name="WeaponStrengthLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/AbilityBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "##"
+label_settings = ExtResource("6_67fxw")
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_00nqd")
+
+[node name="StatsLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "#HP #MAXHP #DEF #AGI"
+label_settings = ExtResource("6_67fxw")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
+theme = ExtResource("4_00nqd")

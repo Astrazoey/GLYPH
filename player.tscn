@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbnghq7no2llm"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_n2702"]
+
+[sub_resource type="Theme" id="Theme_3caaf"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_n2702")
+
+[node name="PlayerInformation" type="Label" parent="."]
+offset_top = 599.0
+offset_right = 162.0
+offset_bottom = 649.0
+theme = SubResource("Theme_3caaf")
+
+[node name="RoomSymbols" type="Node2D" parent="."]

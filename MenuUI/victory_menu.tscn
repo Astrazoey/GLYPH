@@ -1,0 +1,195 @@
+[gd_scene load_steps=14 format=3 uid="uid://qcde1ihacb2x"]
+
+[ext_resource type="Texture2D" uid="uid://dbxdt705r232" path="res://TemporaryIcons/GothicBrickTrimSheet.png" id="1_r3tjl"]
+[ext_resource type="Script" path="res://SceneFadeHelper.gd" id="1_vlerm"]
+[ext_resource type="LabelSettings" uid="uid://dmegync5g3cdk" path="res://Label Settings/heading.tres" id="2_608rx"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="3_hum1b"]
+[ext_resource type="Theme" uid="uid://b21uw6m72u8is" path="res://Themes/margin_container_all_sides.tres" id="4_ke0xt"]
+[ext_resource type="Script" path="res://MenuUI/WeaponList.gd" id="5_grpw8"]
+[ext_resource type="Texture2D" uid="uid://bsq6hco5jomsn" path="res://TemporaryIcons/weapon_axe.png" id="5_nrcj1"]
+[ext_resource type="Theme" uid="uid://dhra3q7omyggt" path="res://Themes/menu_button_theme.tres" id="6_f872p"]
+[ext_resource type="Script" path="res://MenuUI/GoToSceneButton.gd" id="6_up3p8"]
+[ext_resource type="Script" path="res://MenuUI/VictoryStats.gd" id="9_jteeh"]
+[ext_resource type="Theme" uid="uid://s8w5rxc718i4" path="res://Themes/rounded_panel_theme.tres" id="9_pb7io"]
+[ext_resource type="Texture2D" uid="uid://bj8v1af1p2im" path="res://TemporaryIcons/artifact.png" id="10_3e6bn"]
+[ext_resource type="Texture2D" uid="uid://cid38nuwbaa43" path="res://TemporaryIcons/coin_display.png" id="11_p8f7b"]
+
+[node name="VictoryMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vlerm")
+custom_fade_duration = 2
+menu = "VICTORY"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_r3tjl")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 256
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 256
+theme_override_constants/margin_bottom = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "VICTORY"
+label_settings = ExtResource("2_608rx")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_hum1b")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ke0xt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "WEAPONS"
+label_settings = ExtResource("2_608rx")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_hum1b")
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "RETRIEVED WEAPON"
+label_settings = ExtResource("2_608rx")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RetrievedWeaponIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture = ExtResource("5_nrcj1")
+
+[node name="RetrievedWeaponDamage" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "#DMG"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_hum1b")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="WeaponList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("5_grpw8")
+keepWeaponMode = true
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_hum1b")
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("6_f872p")
+text = "BACK"
+script = ExtResource("6_up3p8")
+scenePath = "res://MenuUI/setup_menu.tscn"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_ke0xt")
+
+[node name="VictoryStats" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+script = ExtResource("9_jteeh")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats"]
+layout_mode = 2
+text = "STATS"
+label_settings = ExtResource("2_608rx")
+horizontal_alignment = 1
+
+[node name="HSeparator5" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats"]
+layout_mode = 2
+theme = ExtResource("3_hum1b")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats"]
+layout_mode = 2
+theme = ExtResource("9_pb7io")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="UnlocksLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "UNLOCKED: OUTSKIRTS
+UNLOCKED: APPRAISER"
+
+[node name="HSeparator6" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_hum1b")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "ARTIFACT RETRIEVED: "
+
+[node name="ArtifactIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_3e6bn")
+
+[node name="HSeparator7" type="HSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_hum1b")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("11_p8f7b")
+
+[node name="GoldAmount" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VictoryStats/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "###"

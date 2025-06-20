@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd1at0hgn74ct"]
+[gd_scene load_steps=12 format=3 uid="uid://bd1at0hgn74ct"]
 
 [ext_resource type="Script" path="res://OpenWindows.gd" id="1_e7l57"]
 [ext_resource type="Texture2D" uid="uid://dbxdt705r232" path="res://TemporaryIcons/GothicBrickTrimSheet.png" id="2_2071u"]
+[ext_resource type="AudioStream" uid="uid://5rcx3id6k0c3" path="res://Sounds/click.ogg" id="4_saqcl"]
+[ext_resource type="Texture2D" uid="uid://cwupn76npm1wm" path="res://TemporaryIcons/arrowNE.png" id="5_5wf1p"]
+[ext_resource type="Script" path="res://ToggleGlossary.gd" id="5_nux1o"]
+[ext_resource type="Texture2D" uid="uid://csxpeqj5opex7" path="res://TemporaryIcons/arrowNE_hovered.png" id="6_3t0pq"]
 [ext_resource type="PackedScene" uid="uid://djlrufsl25qit" path="res://MenuUI/bottom_option_bar.tscn" id="8_vqwoi"]
+[ext_resource type="LabelSettings" uid="uid://dg11wbrle5ncm" path="res://Label Settings/description.tres" id="9_6sq21"]
 [ext_resource type="PackedScene" uid="uid://23wxx2gmvsk2" path="res://Abacus.tscn" id="9_7kr3g"]
 [ext_resource type="Theme" uid="uid://s8w5rxc718i4" path="res://Themes/rounded_panel_theme.tres" id="10_8gj47"]
 [ext_resource type="PackedScene" uid="uid://dbnghq7no2llm" path="res://player.tscn" id="10_eek3c"]
-[ext_resource type="PackedScene" uid="uid://3xpbyi5m8rsw" path="res://InteractiveMap.tscn" id="11_u0aub"]
-[ext_resource type="Script" path="res://DungeonGeneration.gd" id="12_456oq"]
 
 [node name="Windows" type="Control"]
 layout_mode = 3
@@ -29,6 +32,49 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("2_2071u")
 stretch_mode = 1
+
+[node name="ToggleGlossary" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 89.0
+offset_top = 3.0
+offset_right = 131.0
+offset_bottom = 45.0
+texture_normal = ExtResource("5_5wf1p")
+texture_hover = ExtResource("6_3t0pq")
+script = ExtResource("5_nux1o")
+
+[node name="Label" type="Label" parent="ToggleGlossary"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 7.0
+offset_right = 143.0
+offset_bottom = 30.0
+text = "< Playtester Tutorial"
+label_settings = ExtResource("9_6sq21")
+
+[node name="AudioClick" type="AudioStreamPlayer" parent="ToggleGlossary"]
+stream = ExtResource("4_saqcl")
+pitch_scale = 2.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 10
+metadata/_edit_lock_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="BottomOptionBar" parent="MarginContainer/PanelContainer" instance=ExtResource("8_vqwoi")]
+layout_mode = 2
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -66,42 +112,5 @@ layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("10_8gj47")
 
-[node name="Player" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer" instance=ExtResource("10_eek3c")]
-
-[node name="DungeonGeneration" type="Node" parent="Control/MarginContainer/HBoxContainer/VBoxContainer"]
-script = ExtResource("12_456oq")
-
-[node name="Map" type="Control" parent="Control/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
-
-[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/HBoxContainer/Map"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("10_8gj47")
-
-[node name="InteractiveMap" parent="Control/MarginContainer/HBoxContainer/Map/PanelContainer" instance=ExtResource("11_u0aub")]
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -55.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 3
-size_flags_vertical = 10
-metadata/_edit_lock_ = true
-
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="BottomOptionBar" parent="MarginContainer/PanelContainer" instance=ExtResource("8_vqwoi")]
-layout_mode = 2
+[node name="Player2" parent="Control/MarginContainer/HBoxContainer/VBoxContainer/PanelContainer" instance=ExtResource("10_eek3c")]
+position = Vector2(0, -474)

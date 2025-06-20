@@ -1,0 +1,250 @@
+[gd_scene load_steps=11 format=3 uid="uid://caqn44dp8f3al"]
+
+[ext_resource type="Texture2D" uid="uid://dbxdt705r232" path="res://TemporaryIcons/GothicBrickTrimSheet.png" id="1_p7aid"]
+[ext_resource type="Texture2D" uid="uid://bdlyc5025jncv" path="res://TemporaryIcons/splash_glyph.png" id="2_stpd7"]
+[ext_resource type="Theme" uid="uid://dhra3q7omyggt" path="res://Themes/menu_button_theme.tres" id="2_xctvg"]
+[ext_resource type="Script" path="res://MenuUI/GoToSceneButton.gd" id="3_whbve"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="3_yg0yc"]
+[ext_resource type="LabelSettings" uid="uid://dmegync5g3cdk" path="res://Label Settings/heading.tres" id="4_jqpt6"]
+[ext_resource type="Theme" uid="uid://b21uw6m72u8is" path="res://Themes/margin_container_all_sides.tres" id="5_c1v2e"]
+[ext_resource type="ButtonGroup" uid="uid://d27otvqia85v8" path="res://MenuUI/ButtonGroups/location_selection_button.tres" id="6_g7yyv"]
+[ext_resource type="Script" path="res://MenuUI/ChooseLocationButton.gd" id="7_7yu4m"]
+[ext_resource type="PackedScene" uid="uid://br31e4fmphpmr" path="res://MenuUI/location_information_container.tscn" id="10_m7yhi"]
+
+[node name="LocationMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_p7aid")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CHOOSE LOCATION"
+label_settings = ExtResource("4_jqpt6")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_yg0yc")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 3
+columns = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("5_c1v2e")
+
+[node name="Tutorial" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer/Tutorial"]
+layout_mode = 2
+texture = ExtResource("2_stpd7")
+
+[node name="ChooseLocationButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer/Tutorial"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("2_xctvg")
+toggle_mode = true
+button_group = ExtResource("6_g7yyv")
+text = "OUTSKIRTS"
+script = ExtResource("7_7yu4m")
+difficultyKey = "TUTORIAL"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("5_c1v2e")
+
+[node name="Very Easy" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer2/Very Easy"]
+layout_mode = 2
+texture = ExtResource("2_stpd7")
+
+[node name="ChooseLocationButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer2/Very Easy"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("2_xctvg")
+toggle_mode = true
+button_group = ExtResource("6_g7yyv")
+text = "MILL"
+script = ExtResource("7_7yu4m")
+difficulty = 1
+difficultyKey = "VERY EASY"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("5_c1v2e")
+
+[node name="Easy" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer3/Easy"]
+layout_mode = 2
+texture = ExtResource("2_stpd7")
+
+[node name="ChooseLocationButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer3/Easy"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("2_xctvg")
+toggle_mode = true
+button_group = ExtResource("6_g7yyv")
+text = "GORGE"
+script = ExtResource("7_7yu4m")
+difficulty = 2
+difficultyKey = "EASY"
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("5_c1v2e")
+
+[node name="Medium" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer4/Medium"]
+layout_mode = 2
+texture = ExtResource("2_stpd7")
+
+[node name="ChooseLocationButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer4/Medium"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("2_xctvg")
+toggle_mode = true
+button_group = ExtResource("6_g7yyv")
+text = "VALLEY"
+script = ExtResource("7_7yu4m")
+difficulty = 3
+difficultyKey = "MEDIUM"
+
+[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("5_c1v2e")
+
+[node name="Hard" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer5"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer5/Hard"]
+layout_mode = 2
+texture = ExtResource("2_stpd7")
+
+[node name="ChooseLocationButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer5/Hard"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("2_xctvg")
+toggle_mode = true
+button_group = ExtResource("6_g7yyv")
+text = "CAVERNS"
+script = ExtResource("7_7yu4m")
+difficulty = 4
+difficultyKey = "HARD"
+
+[node name="MarginContainer6" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("5_c1v2e")
+
+[node name="Very Hard" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer6"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer6/Very Hard"]
+layout_mode = 2
+texture = ExtResource("2_stpd7")
+
+[node name="ChooseLocationButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer6/Very Hard"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("2_xctvg")
+toggle_mode = true
+button_group = ExtResource("6_g7yyv")
+text = "CRATER"
+script = ExtResource("7_7yu4m")
+difficulty = 5
+difficultyKey = "VERY HARD"
+
+[node name="MarginContainer7" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme = ExtResource("5_c1v2e")
+
+[node name="Extreme" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer7"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer7/Extreme"]
+layout_mode = 2
+texture = ExtResource("2_stpd7")
+
+[node name="ChooseLocationButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/MarginContainer7/Extreme"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("2_xctvg")
+toggle_mode = true
+button_group = ExtResource("6_g7yyv")
+text = "COLLAPSED CANYON"
+script = ExtResource("7_7yu4m")
+difficulty = 6
+difficultyKey = "EXTREME"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_yg0yc")
+
+[node name="BackButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("2_xctvg")
+text = "BACK"
+script = ExtResource("3_whbve")
+scenePath = "res://MenuUI/setup_menu.tscn"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="LocationBox" parent="MarginContainer/HBoxContainer/MarginContainer2" instance=ExtResource("10_m7yhi")]
+layout_mode = 2

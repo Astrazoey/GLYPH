@@ -1,3 +1,4 @@
+
 extends Control
 
 var WindowHelper = preload("res://WindowHelper.gd").new()
@@ -10,6 +11,11 @@ var beadSize = Vector2(32, 32)
 @export var beadSz = 32
 
 
+@onready var frame = $Frame
+@onready var middleBar = $MiddleBar
+@onready var marginContainer = $Frame/MarginContainer
+@onready var resetButton = $ResetButton
+
 var tweens = []
 var beadPositions = []
 var upperColumnBeads = []
@@ -19,43 +25,61 @@ var resetTexture = preload("res://TemporaryMapPieces/clear_paths.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if Engine.is_editor_hint():
+		
+		call_deferred("free")
+		
+		if get_child_count() == 0:
+			generateAbacus()
+	else:
+		await get_tree().process_frame
+		generateAbacus()
+
 	
+func generateAbacus():
 	beadSize = Vector2(beadSz, beadSz)
 	
-	# Create Frame
-	var frame = ColorRect.new()
-	frame.color = Color(0.25, 0.1, 0.05, 0.2) # brown
-	frame.size = Vector2(((beadSz * (columnCount+1))), beadSz*(lowerBeads+upperBeads+3))
-	add_child(frame)
+	print(self.size.x)
+	print(self.size.y)
 	
+	var beadWidth = self.size.x / columnCount+2
+	var beadHeight = self.size.y / (upperBeads + lowerBeads + 3)
+	
+	print(beadWidth, beadHeight)
+	beadSz = min(beadWidth, beadHeight)
+	
+	# Create Frame
+	#frame.size = Vector2(((beadSz * (columnCount+1))), beadSz*(lowerBeads+upperBeads+3))
+	
+	# Create Columns
 	for i in range(columnCount):
 		upperColumnBeads.append([])
 		lowerColumnBeads.append([])
 		createColumn(Vector2(beadSz + i * beadSz, 0), i)
 	
-	var bar = ColorRect.new()
-	bar.color = Color(0.125, 0.05, 0.025)
-	bar.size = Vector2(((beadSz * (columnCount+1))), beadSz)
-	bar.position = Vector2(0, beadSz*(upperBeads+1))
-	add_child(bar)
+	# Create Middle Bar
+	middleBar.size = Vector2(((beadSz * (columnCount+1))), beadSz)
+	middleBar.position = Vector2(0, beadSz*(upperBeads+1))
 
-	MenuMakerHelper.addTextureButton(
-		resetTexture,
-		null,
-		resetAbacus.bind(),
-		Vector2(beadSz / 128.0, beadSz / 128.0),
-		Vector2(0, beadSz * (upperBeads+1)),
-		self
-	)
-	
+	resetButton.connect("pressed", resetAbacus.bind())
+	resetButton.size = Vector2(beadSz, beadSz)
+	resetButton.position = Vector2(0, beadSz * (upperBeads+1))
+	#MenuMakerHelper.addTextureButton(
+		#resetTexture,
+		#null,
+		#resetAbacus.bind(),
+		#Vector2(beadSz / 128.0, beadSz / 128.0),
+		#Vector2(0, beadSz * (upperBeads+1)),
+		#self
+	#)	
 
 func _input(event):
 	if(StoredElements.windowManager != null):
-		WindowHelper.allowMapInput(event)
+		#WindowHelper.allowMapInput(event)
 		WindowHelper.allowCheatInputs(event)
 
 func resetAbacus():
-	get_node("AudioClick").play()
+	AudioManager.get_node("Sounds/ButtonClick").play()
 	
 	for i in range(upperColumnBeads.size()):
 		for bead in upperColumnBeads[i]:
@@ -88,6 +112,7 @@ func createBead(position, isLower, columnIndex, beadIndex):
 	bead.texture_normal = preload("res://TemporaryIcons/bead.png")
 	bead.texture_hover = preload("res://TemporaryIcons/bead_selected.png")
 	bead.scale = Vector2(beadSz / 32.0, beadSz / 32.0)
+	#print("created bead with scale", beadSz / 32.0)
 	#bead.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
 	#bead.custom_minimum_size = beadSize
 	bead.position = position
@@ -98,8 +123,8 @@ func createBead(position, isLower, columnIndex, beadIndex):
 	return bead
 
 func moveBead(bead, isLower, columnIndex):
-	get_node("AudioBead").set_pitch_scale(randf_range(0.75, 1.25))
-	get_node("AudioBead").play()
+	AudioManager.get_node("Sounds/AbacusBead").set_pitch_scale(randf_range(0.75, 1.25))
+	AudioManager.get_node("Sounds/AbacusBead").play()
 	
 	tweens = []
 	

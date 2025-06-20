@@ -1,0 +1,142 @@
+[gd_scene load_steps=12 format=3 uid="uid://dujw85gbd4gph"]
+
+[ext_resource type="Texture2D" uid="uid://dbxdt705r232" path="res://TemporaryIcons/GothicBrickTrimSheet.png" id="1_al1yw"]
+[ext_resource type="Theme" uid="uid://b21uw6m72u8is" path="res://Themes/margin_container_all_sides.tres" id="2_ytj66"]
+[ext_resource type="LabelSettings" uid="uid://dmegync5g3cdk" path="res://Label Settings/heading.tres" id="3_nagjb"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="4_koeyx"]
+[ext_resource type="Theme" uid="uid://s8w5rxc718i4" path="res://Themes/rounded_panel_theme.tres" id="5_7nslf"]
+[ext_resource type="Texture2D" uid="uid://bsq6hco5jomsn" path="res://TemporaryIcons/weapon_axe.png" id="6_oidk3"]
+[ext_resource type="Theme" uid="uid://dhra3q7omyggt" path="res://Themes/menu_button_theme.tres" id="7_2hpxv"]
+[ext_resource type="ButtonGroup" uid="uid://b8dpoojpbce7w" path="res://MenuUI/ButtonGroups/weapon_selection_button_group.tres" id="8_a6adf"]
+[ext_resource type="Script" path="res://MenuUI/ChooseWeapon.gd" id="9_7hkn2"]
+[ext_resource type="Script" path="res://MenuUI/WeaponList.gd" id="10_gmfqa"]
+[ext_resource type="Script" path="res://MenuUI/GoToSceneButton.gd" id="10_h236n"]
+
+[node name="WeaponMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_al1yw")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ytj66")
+theme_override_constants/margin_left = 512
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 512
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "WEAPONS"
+label_settings = ExtResource("3_nagjb")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_koeyx")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_7nslf")
+
+[node name="CurrentWeaponInfo" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/CurrentWeaponInfo"]
+layout_mode = 2
+texture = ExtResource("6_oidk3")
+stretch_mode = 5
+
+[node name="WeaponDamage" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/CurrentWeaponInfo"]
+layout_mode = 2
+text = "#DMG"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_koeyx")
+
+[node name="ChooseDefaultWeapon" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("7_2hpxv")
+toggle_mode = true
+button_group = ExtResource("8_a6adf")
+text = "USE CLASS WEAPON"
+script = ExtResource("9_7hkn2")
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_koeyx")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 256)
+layout_mode = 2
+
+[node name="WeaponList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("10_gmfqa")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/WeaponList"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/WeaponList/HBoxContainer"]
+custom_minimum_size = Vector2(0, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("5_7nslf")
+
+[node name="CurrentWeaponInfo" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/WeaponList/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/ScrollContainer/WeaponList/HBoxContainer/PanelContainer/CurrentWeaponInfo"]
+layout_mode = 2
+texture = ExtResource("6_oidk3")
+stretch_mode = 5
+
+[node name="WeaponDamage" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/WeaponList/HBoxContainer/PanelContainer/CurrentWeaponInfo"]
+layout_mode = 2
+text = "#DMG"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/WeaponList/HBoxContainer"]
+layout_mode = 2
+
+[node name="SelectButton" type="Button" parent="MarginContainer/VBoxContainer/ScrollContainer/WeaponList/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_2hpxv")
+text = "Select"
+
+[node name="HSeparator4" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_koeyx")
+
+[node name="BackButton2" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("7_2hpxv")
+text = "BACK"
+script = ExtResource("10_h236n")
+scenePath = "res://MenuUI/setup_menu.tscn"

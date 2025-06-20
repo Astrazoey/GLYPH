@@ -18,6 +18,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func toggleGlossary():
+	AudioManager.get_node("Sounds/ButtonClick").play()
 	if(window == null):
 		window = WindowHelper.createWindow(glossaryName, glossarySize, false, load("res://Glossary.tscn").instantiate(), Vector2i(200, 32), true, true, self)
 		glossaryOpen = true

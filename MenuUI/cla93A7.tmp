@@ -1,0 +1,148 @@
+[gd_scene load_steps=9 format=3 uid="uid://di25ygksfhhrh"]
+
+[ext_resource type="Texture2D" uid="uid://dbxdt705r232" path="res://TemporaryIcons/GothicBrickTrimSheet.png" id="1_amb3c"]
+[ext_resource type="Texture2D" uid="uid://bk2hyygfufeuh" path="res://TemporaryIcons/GothicBrickTrimSheet4.png" id="2_x8lik"]
+[ext_resource type="Texture2D" uid="uid://bdlyc5025jncv" path="res://TemporaryIcons/splash_glyph.png" id="3_3vxl2"]
+[ext_resource type="LabelSettings" uid="uid://dmegync5g3cdk" path="res://Label Settings/heading.tres" id="3_lj8mi"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="4_t34rq"]
+[ext_resource type="Theme" uid="uid://dhra3q7omyggt" path="res://Themes/menu_button_theme.tres" id="5_l3ym6"]
+[ext_resource type="ButtonGroup" uid="uid://dqucy3dg58q0t" path="res://MenuUI/ButtonGroups/class_selection_button_group.tres" id="6_r2hri"]
+[ext_resource type="Script" path="res://MenuUI/GoToSceneButton.gd" id="8_n62cw"]
+
+[node name="ClassMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_amb3c")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 32
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_x8lik")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_3vxl2")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CHOOSE CLASS"
+label_settings = ExtResource("3_lj8mi")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_t34rq")
+
+[node name="ChooseArchivist" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("5_l3ym6")
+toggle_mode = true
+button_group = ExtResource("6_r2hri")
+text = "ARCHIVIST"
+
+[node name="ChooseAppraiser" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("5_l3ym6")
+toggle_mode = true
+button_group = ExtResource("6_r2hri")
+text = "APPRAISER"
+
+[node name="ChooseScout" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("5_l3ym6")
+toggle_mode = true
+button_group = ExtResource("6_r2hri")
+text = "SCOUT"
+
+[node name="ChooseTrapper" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("5_l3ym6")
+toggle_mode = true
+button_group = ExtResource("6_r2hri")
+text = "TRAPPER"
+
+[node name="ChooseFugitive" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("5_l3ym6")
+toggle_mode = true
+button_group = ExtResource("6_r2hri")
+text = "FUGITIVE"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_t34rq")
+
+[node name="BackButton" type="Button" parent="MarginContainer/HBoxContainer/MarginContainer/PanelContainer/TextureRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("5_l3ym6")
+text = "BACK"
+script = ExtResource("8_n62cw")
+scenePath = "res://MenuUI/setup_menu.tscn"
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 32
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+texture = ExtResource("2_x8lik")
+stretch_mode = 1

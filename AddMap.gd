@@ -4,8 +4,13 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.scale = Vector2(1, 1)
-	self.position = Vector2(32, get_viewport_rect().size.y - self.size.y - 32)
+	if(StoredElements.player == null):
+		visible = false
+	else:
+		visible = true
+	
+	#self.scale = Vector2(1, 1)
+	#self.position = Vector2(32, get_viewport_rect().size.y - self.size.y - 32)
 	self.connect("pressed", openMapWindow.bind())
 
 

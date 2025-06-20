@@ -22,8 +22,24 @@
 		{ "text": "person / being" }
 	  ],
 	  [
+		{ "sitelen": "󱥽" },
+		{ "text": "monster / danger" }
+	  ],
+	  [
 		{ "sitelen": "󱥭" },
 		{ "text" : "room / building"}
+	  ],
+	  [
+		{ "sitelen": "󱤪" },
+		{ "text" : "paper / flat"}
+	  ],
+	  [
+		{ "sitelen": "󱤰" },
+		{ "text" : "land / earth"}
+	  ],
+	  [
+		{ "sitelen": "󱤲" },
+		{ "text" : "currency / wealth"}
 	  ]
 	],
 	"entryCount": 9,
@@ -69,6 +85,18 @@
 		{ "sitelen": "󱥩" },
 		{ "text" : "towards / to / for / move"}
 	  ],
+	  [
+		{ "sitelen": "󱤬" },
+		{ "text" : "at / in / on / true / real"}
+	  ],
+	  [
+		{ "sitelen": "󱥍" },
+		{ "text" : "phrase marker"}
+	  ],
+	  [
+		{ "sitelen": "|" },
+		{ "text" : "sentence end"}
+	  ],
 	],
 	"entryCount": 9,
 	"entryColumns": 2,
@@ -112,9 +140,85 @@
 	  [
 		{ "sitelen": "󱤃" },
 		{ "text" : "hunt / search"}
+	  ],
+	  [
+		{ "sitelen": "󱤘" },
+		{ "text" : "possible / can"}
 	  ]
 	],
-	"entryCount": 9,
+	"entryCount": 10,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Concepts 2": {
+	"description": "Rough translations of Sitelen Pona",
+	"entries": [
+	  [
+		{ "sitelen": "󱥈" },
+		{ "text" : "destroy / accident"}
+	  ],
+	  [
+		{ "sitelen": "󱦅" },
+		{ "text" : "steal"}
+	  ],
+	  [
+		{ "sitelen": "󱥶" },
+		{ "text" : "away / absent"}
+	  ],
+	  [
+		{ "sitelen": "󱥡" },
+		{ "text" : "know / information"}
+	  ],
+	  [
+		{ "sitelen": "󱤮" },
+		{ "text" : "eye / see / try"}
+	  ],
+	  [
+		{ "sitelen": "󱤍" },
+		{ "text" : "bad"}
+	  ],
+	  [
+		{ "sitelen": "󱥔" },
+		{ "text" : "good / simple / useful"}
+	  ],
+	  [
+		{ "sitelen": "󱥠" },
+		{ "text" : "image / draw / write"}
+	  ],
+	  [
+		{ "sitelen": "󱥐" },
+		{ "text" : "end / finish"}
+	  ],
+	  [
+		{ "sitelen": "󱥇" },
+		{ "text" : "start / open"}
+	  ]
+	],
+	"entryCount": 10,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Concepts 3": {
+	"description": "Rough translations of Sitelen Pona",
+	"entries": [
+	  [
+		{ "sitelen": "󱥣" },
+		{ "text" : "important / big"}
+	  ],
+	  [
+		{ "sitelen": "󱤋" },
+		{ "text" : "market / trade"}
+	  ],
+	  [
+		{ "sitelen": "󱤿" },
+		{ "text" : "way / system / method"}
+	  ],
+	  [
+		{ "sitelen": "󱥌" },
+		{ "text" : "give / release"}
+	  ]
+	],
+	"entryCount": 10,
 	"entryColumns": 2,
 	"entrySize": 14
   },

@@ -10,6 +10,58 @@
 	"entryColumns": 1,
 	"entrySize": 80
   },
+  "Actions": {
+	"description": "Glyphs representing actions the adventurer can take",
+	"entries": [
+	  [
+		{ "icon": "res://TemporaryIcons/arrowN.png" },
+		{ "sitelen": "󱥩" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/flee.png" },
+		{ "sitelen": "󱥩󱥶" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/destroy_item.png" },
+		{ "sitelen": "󱥈󱥽󱤘" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/steal.png" },
+		{ "sitelen": "󱦅󱤘" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/dig.png" },
+		{ "sitelen": "󱤃󱤉󱤌" }
+	  ]
+	],
+	"entryCount": 12,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Abilities": {
+	"description": "Glyphs representing actions the adventurer can take",
+	"entries": [
+	  [
+		{ "icon": "res://TemporaryIcons/scout.png" },
+		{ "sitelen": "󱤃󱥭󱥒" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/appraise.png" },
+		{ "sitelen": "󱤮󱥡" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/disarm.png" },
+		{ "sitelen": "󱥶󱤍󱥭" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/autofill.png" },
+		{ "sitelen": "󱥠󱤰󱤪" }
+	  ]
+	],
+	"entryCount": 12,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
   "Weapons": {
 	"description": "Interact with the Room Glyph to pick up weapons. Only one weapon can be carried at a time. \n!!! Weapon attack is reduced by 1 for each enemy killed !!!",
 	"entries": [
@@ -27,7 +79,7 @@
 	  ],
 	  [
 		{ "icon": "res://TemporaryIcons/weapon_pickaxe.png" },
-		{ "sitelen": "󱥵󱥚󱥖󱥮󱥮, 󱤃󱤃󱤉󱤌󱥭󱤌󱤂" }
+		{ "sitelen": "󱥵󱥚󱥖󱥮󱥮, 󱤃󱤉󱤌󱥭󱤌󱤂" }
 	  ],
 	  [
 		{ "icon": "res://TemporaryIcons/weapon_shortsword.png" },
@@ -36,6 +88,82 @@
 	  ]
 	],
 	"entryCount": 12,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Basic Rooms": {
+	"description": "Glyphs representing regular rooms",
+	"entries": [
+	  [
+		{ "icon": "res://TemporaryIcons/start.png" },
+		{ "sitelen": "󱥇" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/exit.png" },
+		{ "sitelen": "󱥐" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/empty_room.png" },
+		{ "sitelen": "󱥭󱤂" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/artifact.png" },
+		{ "sitelen": "󱤌󱥣" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/item.png" },
+		{ "sitelen": "󱥭󱤌󱥔" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/item_picked_up.png" },
+		{ "sitelen": "󱥭󱤌󱥍󱤂" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/shop.png" },
+		{ "sitelen": "󱥭󱤋" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/shop_paid.png" },
+		{ "sitelen": "󱥭󱤋󱥍󱤲󱥌󱥐" }
+	  ]
+	],
+	"entryCount": 10,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Information Rooms": {
+	"description": "Glyphs representing rooms that grant information",
+	"entries": [
+	  [
+		{ "icon": "res://TemporaryIcons/soothsayer.png" },
+		{ "sitelen": "󱥠󱤿󱥣" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/health_room.png" },
+		{ "sitelen": "󱤮󱥍󱥛󱥡" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/health_room_dead.png" },
+		{ "sitelen": "󱤮󱥍󱥛󱥡󱥐" }
+	  ]
+	],
+	"entryCount": 10,
+	"entryColumns": 2,
+	"entrySize": 14
+  },
+  "Special Glyphs": {
+	"description": "Glyphs representing unique information",
+	"entries": [
+	  [
+		{ "icon": "res://TemporaryIcons/death.png" },
+		{ "sitelen": "󱤷" }
+	  ],
+	  [
+		{ "icon": "res://TemporaryIcons/revive.png" },
+		{ "sitelen": "󱤑󱤷|󱥌󱤑󱥝" }
+	  ]
+	],
+	"entryCount": 10,
 	"entryColumns": 2,
 	"entrySize": 14
   },
@@ -70,7 +198,7 @@
 	"entryColumns": 2,
 	"entrySize": 14
   },
-  "Warnings": {
+  "Warning Rooms": {
 	"description": "Rooms warning of nearby threats",
 	"entries": [
 	  [
@@ -88,7 +216,7 @@
 	"entryColumns": 2,
 	"entrySize": 14
   },
-  "Information": {
+  "Information Icons": {
 	"description": "Icons displaying information",
 	"entries": [
 	  [

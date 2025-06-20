@@ -6,7 +6,7 @@ var WindowHelper = preload("res://WindowHelper.gd").new()
 var gridSize
 var cellSize
 var optionSize = 24
-var mapSize = 690
+var mapSize = 670
 
 enum CellOptions {START, END, ITEM, ENEMY, TRAP, TELEPORT, STAR, TAB}
 var cellOption = CellOptions.START
@@ -71,11 +71,12 @@ var followerSprite
 func _ready():
 	if(!StoredDungeon.getDungeonMap()):
 		StoredDungeon.setDungeonMap(self)
-		mapSize = 790
+		mapSize = 736
 	else:
-		mapSize = 545
+		mapSize = 600
+		generateNewMap()
 	StoredDungeon.addDungeonMap(self)
-	generateNewMap()
+	#generateNewMap()
 	
 	followerSprite = Sprite2D.new()
 	followerSprite.texture = cellTextures["empty"]
@@ -118,10 +119,10 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			# Left click: call the pressCell method
-			clickCell(event.position, event.button_index)
+			clickCell(get_global_mouse_position(), event.button_index)
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			# Right click: call the pressCell method with the right-click texture
-			clickCell(event.position, event.button_index)
+			clickCell(get_global_mouse_position(), event.button_index)
 		
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
 			if(cellOption < 7):
@@ -160,7 +161,7 @@ func _input(event):
 
 func getButtonAtPosition(pos):
 	for child in get_children():
-		if child is TextureButton and child.get_rect().has_point(pos):
+		if child is TextureButton and child.get_global_rect().has_point(pos):
 			return child
 
 func clickCell(pos, buttonIndex):	

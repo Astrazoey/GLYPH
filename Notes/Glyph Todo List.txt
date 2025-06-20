@@ -1,3 +1,37 @@
+CURRENT PLAN:
+	PLAYTESTING PRODUCT:
+		1. [COMPLETE] Make a victory screen
+		2. [COMPLETE] Make a death screen
+		3. [BANDAIDED] Redo play environment
+		4. Finish glossarys
+		5. Two enemies nearby glyph
+		6. Make sprites for everything
+	
+	NEXT PHASE:
+		1. Shop
+		2. Artifact Collection
+		3. Working Options Menu
+		4. Ghost Damage
+		
+	NEXT PHASE:
+		1. Convert Rooms to Resources
+		2. Convert Difficulties (Locations) to Resources
+		3. Convert Classes to Resources
+		4. Convert Weapons to Resources
+		
+	NEXT PHASE:
+		1. Status effects system
+			- Increase AGI
+			- Prevent durability loss
+			- Increase potion effectiveness
+			- Increase luck
+		2. Mystery Warning Glyph
+		3. Move Count Triggered Enemies
+		4. Require two swap room traps to trigger
+		5. Swap room trap warning
+		
+	
+
 GLYPH SHORT TERM TODO:
 	Add ghost damage
 	[COMPLETE] Add max health for classes
@@ -112,3 +146,4 @@ PLAYTESTING NOTES Vacci 1:
 
 STORY IDEAS:
 	- Confiscated weapons if you side with resistance
+	- Send in your friends if caught

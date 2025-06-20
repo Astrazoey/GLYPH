@@ -67,7 +67,8 @@ func startDungeonGeneration():
 	#Set Dungeon in Main Dungeon
 	StoredDungeon.setDungeon(dungeon)
 	
-	player = get_node("Player")
+	#player = get_node("Player")
+	player = StoredElements.player
 	if player:
 		player.setDungeon(dungeon)
 		player.spawnPlayer()

@@ -5,6 +5,8 @@ var Room = preload("res://Room.gd")
 var RoomTextureHelper = preload("res://RoomTextureHelper.gd").new()
 var MenuMakerHelper = preload("res://MenuMakerHelper.gd").new()
 var WindowHelper = preload("res://WindowHelper.gd").new()
+var SceneFadeHelper = preload("res://SceneFadeHelper.gd").new()
+var SaveGameHelper = preload("res://SaveGameHelper.gd").new()
 
 @onready var menuContainer = $"RoomSymbols"
 
@@ -152,17 +154,48 @@ func _ready():
 	setClassStats()
 	resetPlayerStats()
 	drawMenu()
-	#updatePlayerSymbols()
 	
-	var viewport_size = get_viewport_rect().size
-	var menu_size = Vector2(416, 336)
-	get_node("RoomSymbols").position = ((viewport_size) / 2) - (menu_size / 4) + Vector2(32, 32)
+	var viewport_size = get_parent().size
+	var menu_size = Vector2(get_parent().size.x, get_parent().size.y)
+	get_node("RoomSymbols").position = Vector2(128, 128)
 
+	startGame()
 	
 func _input(event):
-	WindowHelper.allowMapInput(event)
 	WindowHelper.allowCheatInputs(event)
 		
+
+func startGame():
+	
+	#AudioManager.get_node("Sounds/GameStart").play()
+	await get_tree().process_frame
+	StoredElements.windowManager.openSeverenceWindows()
+	
+	StoredElements.gold -= StoredElements.wager
+	StoredElements.gold = max(StoredElements.gold, 0)
+	
+	await get_tree().process_frame
+	
+	StoredElements.dungeonGenerator.difficulty = StoredElements.difficulty
+	generateNewDungeon()
+	updateCharacterStats(StoredElements.classId, StoredElements.wager)
+	
+	
+	if(StoredElements.weaponIndex > -1):
+		updateCharacterWeapon(StoredElements.weapons[StoredElements.weaponIndex], StoredElements.weaponStrengths[StoredElements.weaponIndex])
+		StoredElements.weapons[StoredElements.weaponIndex] = -1
+	StoredElements.weaponIndex = -1
+	
+	updatePlayerSymbols()
+	
+	$"../../../Map/PanelContainer/InteractiveMap".generateNewMap()
+	
+	#StoredDungeon.removeNullBoards()
+	#if(StoredDungeon.dungeonMapNodes.size() > 0):
+	#	for interactiveMap in StoredDungeon.dungeonMapNodes:
+	#		if(interactiveMap && is_instance_valid(interactiveMap)):
+	#			interactiveMap.clearBoard()	
+
 func resetPlayerStats():
 	health = startHealth
 	armor = startArmor
@@ -236,7 +269,7 @@ func setClassStats():
 		startWeapon = Room.WeaponType.SHORTSWORD
 	
 func generateNewDungeon():
-	get_parent().startDungeonGeneration()
+	StoredElements.dungeonGenerator.startDungeonGeneration()
 	spawnPlayer()
 	
 func updateCharacterStats(newClass, wager):
@@ -303,23 +336,42 @@ func killPlayer():
 		roomButton.texture_hover = deathTexture
 		roomButton.connect("pressed", returnToMenu.bind())
 		
-	get_node("../Sounds/AudioDeath").play()
+	AudioManager.get_node("Sounds/Death").play()
 
+func getRewards(goldAmount, hasArtifact):
+	StoredElements.gold += goldAmount
+	if(hasArtifact):
+		StoredElements.artifactCount += 1
+		if(StoredElements.isHighestDifficulty()):
+			print("is highest difficulty!")
+			StoredElements.highestDifficultyWinCount += 1
+			
+	StoredElements.updateUnlocks()
+	SaveGameHelper.saveGame(StoredElements.saveSlot)
+	
+	StoredElements.winGold = gold
+	StoredElements.winArtifact = hasArtifact
+	StoredElements.winWeapon = weapon
+	StoredElements.winWeaponDamage = attack
 
 func win():	
-	get_node("../Sounds/AudioWin").play()
-	StoredElements.master.getRewards(gold, hasArtifact)
-	StoredElements.inventoryManager.updateMenu()
-	StoredElements.windowManager.openInventoryWindow()
+	AudioManager.get_node("Sounds/Win").play()
+	getRewards(gold, hasArtifact)
 	StoredElements.windowManager.closeSeverenceWindows()
+	SaveGameHelper.saveGame(StoredElements.saveSlot)
+	SceneFadeHelper.fadeScene(StoredElements.windowManager, null, "res://MenuUI/victory_menu.tscn", 1)
 
 func returnToMenu():
-	StoredElements.master.isPlaying = false
-	StoredElements.master.updateMenu()
-	StoredElements.saveGame(StoredElements.saveSlot)
-	
+	AudioManager.get_node("Sounds/ButtonClick").play()
+	StoredElements.winGold = gold
+	StoredElements.winArtifact = hasArtifact
+	StoredElements.winWeapon = weapon
+	StoredElements.winWeaponDamage = attack
+	#StoredElements.master.updateMenu()
+	SaveGameHelper.saveGame(StoredElements.saveSlot)
 	StoredElements.windowManager.closeSeverenceWindows()
-	StoredElements.windowManager.openMasterWindow()
+	SceneFadeHelper.fadeScene(StoredElements.windowManager, null, "res://MenuUI/defeat_screen.tscn", 1)
+	#StoredElements.windowManager.openMasterWindow()
 
 func setDungeon(newDungeon):
 	dungeon = newDungeon
@@ -373,7 +425,7 @@ func drawMenu():
 	#deathButton.connect("mouse_exited", unhoverButton.bind(deathButton))
 	
 	# Gold Display
-	if(StoredElements.master.difficulty > 1):
+	if(StoredElements.difficulty > 1):
 		goldBackground = MenuMakerHelper.createSimpleButton(attributeContainer2, null, Vector2(-124, -20), menuContainer)
 		goldIcons = createAttributeIcons(Vector2(-124 + 4, -20), 5, false)
 
@@ -401,7 +453,7 @@ func createAttributeIcons(startPos, count, isHorizontal):
 func updatePlayerSymbols():
 	# Get Current Room
 	var currentRoom = dungeon.grid[posX][posY]
-	get_node("../Sounds/AudioClick").play()
+	AudioManager.get_node("Sounds/ButtonClick").play()
 	
 	MenuMakerHelper.clearMenu(menuContainer)
 	
@@ -449,7 +501,7 @@ func updatePlayerSymbols():
 			if(currentRoom.hasItem):
 				roomButton.connect("pressed", getItem.bind(currentRoom))
 				showItem(currentRoom)
-				if(!currentRoom.isDead) and StoredElements.master.difficulty > 3:
+				if(!currentRoom.isDead) and StoredElements.difficulty > 3:
 					abilityButtons[2].texture_normal = breakItemTexture
 					abilityButtons[2].connect("pressed", destroyItem.bind(currentRoom))
 		
@@ -622,10 +674,10 @@ func createArrowButtons(currentRoom):
 
 func destroyItem(currentRoom):
 	if(currentRoom.roomType == Room.RoomType.ITEM):
-		get_node("../Sounds/AudioBreakItem").play()
+		AudioManager.get_node("Sounds/BreakItem").play()
 		currentRoom.hasItem = false
 	elif(currentRoom.roomType == Room.RoomType.MIMIC):
-		get_node("../Sounds/AudioDefeatEnemy").play()
+		AudioManager.get_node("Sounds/DefeatEnemy").play()
 		currentRoom.roomType = Room.RoomType.ITEM
 		currentRoom.secretRevealed = true
 	currentRoom.isDead = true
@@ -664,7 +716,7 @@ func getDamageBlocked():
 
 func takeDamage(damage):
 	
-	get_node("../Sounds/AudioTakeDamage").play()
+	AudioManager.get_node("Sounds/TakeDamage").play()
 	
 	# Armor
 	damage = damage - getDamageBlocked()
@@ -685,7 +737,7 @@ func takeDamage(damage):
 	
 
 func miss():
-	get_node("../Sounds/AudioDodge").play()
+	AudioManager.get_node("Sounds/Dodge").play()
 	
 	for i in healthIcons.size():
 		healthIcons[i].texture_normal = dodgeTexture
@@ -728,11 +780,11 @@ func dig(currentRoom):
 	
 	if randf() < digChance:
 		currentRoom.hasItem = true
-		get_node("../Sounds/AudioDodge").play()
+		AudioManager.get_node("Sounds/Dodge").play()
 		luck = 0
 	else:
 		currentRoom.hasItem = false
-		get_node("../Sounds/AudioBreakItem").play()
+		AudioManager.get_node("Sounds/BreakItem").play()
 		luck += 0.1
 		
 	currentRoom.secretRevealed = true
@@ -746,7 +798,7 @@ func steal(currentRoom):
 	
 	if randf() < stealChance:
 		currentRoom.hasPaid = true
-		get_node("../Sounds/AudioDodge").play()
+		AudioManager.get_node("Sounds/Dodge").play()
 		luck = 0
 		redrawEverything()
 	else:
@@ -766,9 +818,9 @@ func swapRoom(currentRoom):
 	
 		dungeon.swapRooms(enemyRoom, itemRoom)
 		dungeon.generateWarnings()
-		get_parent().drawDungeon()
+		StoredElements.dungeonGenerator.drawDungeon()
 		
-		get_node("../Sounds/AudioTeleport").play()
+		AudioManager.get_node("Sounds/Teleport").play()
 		
 	currentRoom.isTriggered = true
 	currentRoom.isDead = true
@@ -776,13 +828,13 @@ func swapRoom(currentRoom):
 	redrawEverything()
 	
 func disarm(currentRoom):
-	get_node("../Sounds/AudioUseAbility").play()
+	AudioManager.get_node("Sounds/UseAbility").play()
 	currentCooldown = abilityCooldown
 	currentRoom.isDead = true
 	redrawEverything()
 	
 func appraise(currentRoom):
-	get_node("../Sounds/AudioUseAbility").play()
+	AudioManager.get_node("Sounds/UseAbility").play()
 	currentCooldown = abilityCooldown
 	
 	if ((currentRoom.roomType == Room.RoomType.ENEMY) or (currentRoom.roomType == Room.RoomType.BOSS)) and (not currentRoom.isDead):
@@ -804,7 +856,7 @@ func appraiseItem(currentRoom):
 @warning_ignore("unused_parameter")
 func scout(currentRoom):
 	currentCooldown = abilityCooldown
-	get_node("../Sounds/AudioUseAbility").play()
+	AudioManager.get_node("Sounds/UseAbility").play()
 	
 	var connectedRooms = dungeon.getConnectedRooms(dungeon.grid[posX][posY])
 	connectedRooms.shuffle()
@@ -822,7 +874,7 @@ func autofillMap(currentRoom):
 	var startX = startingNode.posX
 	var startY = startingNode.posY
 	
-	get_node("../Sounds/AudioUseAbility").play()
+	AudioManager.get_node("Sounds/UseAbility").play()
 	StoredDungeon.removeNullBoards()
 	if(StoredDungeon.dungeonMapNodes.size() > 0):
 		for interactiveMap in StoredDungeon.dungeonMapNodes:
@@ -832,7 +884,7 @@ func autofillMap(currentRoom):
 	return
 	
 func soothsayer(currentRoom):
-	get_node("../Sounds/AudioUseAbility").play()
+	AudioManager.get_node("Sounds/UseAbility").play()
 	
 	var directionalRooms = []
 	for dir in ["N", "S", "E", "W"]:
@@ -850,7 +902,7 @@ func soothsayer(currentRoom):
 			index += 1
 	
 func showPlayerHealth(currentRoom):
-	get_node("../Sounds/AudioUseAbility").play()
+	AudioManager.get_node("Sounds/UseAbility").play()
 	
 	currentRoom.isDead = true
 	redrawEverything()
@@ -897,7 +949,7 @@ func attackEnemy(enemy):
 		attack -= 1
 		attack = max(attack, 1)
 		enemy.isDead = true
-		get_node("../Sounds/AudioDefeatEnemy").play()
+		AudioManager.get_node("Sounds/DefeatEnemy").play()
 		
 	dungeon.generateWarnings()
 	redrawEverything()
@@ -927,7 +979,7 @@ func flee():
 func teleportToExit(currentRoom):
 	disarmTeleporters()
 	movePlayerToRoom(Room.RoomType.TELEPORTER_EXIT)
-	get_node("../Sounds/AudioTeleport").play()
+	AudioManager.get_node("Sounds/Teleport").play()
 	redrawEverything()
 	return
 	
@@ -942,7 +994,7 @@ func disarmTeleporters():
 	if(teleporters.size() > 0):
 		for teleporter in teleporters:
 			if(!playedSound && !teleporter.isDead):
-				get_node("../Sounds/AudioTeleport").play()
+				AudioManager.get_node("Sounds/Teleport").play()
 				playedSound = true
 			teleporter.isDead = true
 	dungeon.generateWarnings()
@@ -951,7 +1003,7 @@ func disarmTeleporters():
 func getArtifact(currentRoom):
 	currentRoom.isDead = true
 	hasArtifact = true
-	get_node("../Sounds/AudioGetItem").play()
+	AudioManager.get_node("Sounds/GetItem").play()
 	redrawEverything()
 
 func showItem(currentRoom):
@@ -1049,7 +1101,7 @@ func getItem(currentRoom):
 				agility = min(agility, 10)
 			currentRoom.hasItem = false
 		
-		get_node("../Sounds/AudioGetItem").play()
+		AudioManager.get_node("Sounds/GetItem").play()
 		redrawEverything()
 
 func swapWeapon(currentRoom):
@@ -1066,7 +1118,7 @@ func redrawEverything():
 	StoredDungeon.setPlayer(showPlayer, playerSize, posX, posY)
 	if(StoredDungeon.getDungeonVisualizer() != null):
 		StoredDungeon.getDungeonVisualizer().redraw()
-	get_parent().drawDungeon()
+	StoredElements.dungeonGenerator.drawDungeon()
 
 func isInNewRoom(currentRoom):
 	if currentRoom in exploredRooms:

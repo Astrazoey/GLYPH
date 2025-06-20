@@ -1,0 +1,139 @@
+[gd_scene load_steps=12 format=3 uid="uid://vhl0amxk1xtx"]
+
+[ext_resource type="Texture2D" uid="uid://dbxdt705r232" path="res://TemporaryIcons/GothicBrickTrimSheet.png" id="1_tneyx"]
+[ext_resource type="Script" path="res://MenuUI/defeat_screen.gd" id="1_wh82k"]
+[ext_resource type="LabelSettings" uid="uid://dmegync5g3cdk" path="res://Label Settings/heading.tres" id="2_t1lio"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="3_mvaix"]
+[ext_resource type="Theme" uid="uid://s8w5rxc718i4" path="res://Themes/rounded_panel_theme.tres" id="4_51e6u"]
+[ext_resource type="Texture2D" uid="uid://cid38nuwbaa43" path="res://TemporaryIcons/coin_display.png" id="4_tvfmy"]
+[ext_resource type="LabelSettings" uid="uid://dg11wbrle5ncm" path="res://Label Settings/description.tres" id="5_b5gn1"]
+[ext_resource type="Theme" uid="uid://b21uw6m72u8is" path="res://Themes/margin_container_all_sides.tres" id="5_fsn8q"]
+[ext_resource type="Texture2D" uid="uid://bsq6hco5jomsn" path="res://TemporaryIcons/weapon_axe.png" id="8_beue1"]
+[ext_resource type="Theme" uid="uid://dhra3q7omyggt" path="res://Themes/menu_button_theme.tres" id="10_5o0et"]
+[ext_resource type="Script" path="res://MenuUI/GoToSceneButton.gd" id="11_a8lx1"]
+
+[node name="DefeatScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wh82k")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tneyx")
+stretch_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 440
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 440
+theme_override_constants/margin_bottom = 128
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "DEFEAT"
+label_settings = ExtResource("2_t1lio")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_mvaix")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_right = 128
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("4_51e6u")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_fsn8q")
+
+[node name="ClassDeathInfo" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+text = "$Class has died within the Severence"
+label_settings = ExtResource("5_b5gn1")
+horizontal_alignment = 1
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_fsn8q")
+
+[node name="LOST POSSESIONS" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+text = "LOST POSSESIONS"
+label_settings = ExtResource("5_b5gn1")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_fsn8q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture = ExtResource("4_tvfmy")
+stretch_mode = 3
+
+[node name="GoldDisplay" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "-###"
+label_settings = ExtResource("5_b5gn1")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_fsn8q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+
+[node name="WeaponIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+texture = ExtResource("8_beue1")
+stretch_mode = 3
+
+[node name="WeaponAttack" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/PanelContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+text = "-#DMG"
+label_settings = ExtResource("5_b5gn1")
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_mvaix")
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("10_5o0et")
+text = "BACK"
+script = ExtResource("11_a8lx1")
+scenePath = "res://MenuUI/setup_menu.tscn"

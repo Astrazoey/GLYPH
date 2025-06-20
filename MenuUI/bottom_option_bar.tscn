@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://djlrufsl25qit"]
+
+[ext_resource type="Theme" uid="uid://dhra3q7omyggt" path="res://Themes/menu_button_theme.tres" id="1_g7e1w"]
+[ext_resource type="Theme" uid="uid://cm5kjp18f74ky" path="res://Themes/h_separator_theme.tres" id="2_rmsdg"]
+[ext_resource type="Script" path="res://OpenGlossary.gd" id="3_y3uoq"]
+[ext_resource type="Script" path="res://AddMap.gd" id="4_7hlun"]
+[ext_resource type="AudioStream" uid="uid://5rcx3id6k0c3" path="res://Sounds/click.ogg" id="5_f4jyx"]
+[ext_resource type="Script" path="res://MuteMusic.gd" id="6_5k4kf"]
+
+[node name="BottomOptionBar" type="MarginContainer"]
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="Options Buttons" type="HBoxContainer" parent="."]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="HowToPlayButton" type="Button" parent="Options Buttons"]
+layout_mode = 2
+theme = ExtResource("1_g7e1w")
+text = "How To Play"
+
+[node name="VSeparator" type="VSeparator" parent="Options Buttons"]
+layout_mode = 2
+theme = ExtResource("2_rmsdg")
+
+[node name="GlyphGlossaryButton" type="Button" parent="Options Buttons"]
+layout_mode = 2
+theme = ExtResource("1_g7e1w")
+text = "Glyphs"
+script = ExtResource("3_y3uoq")
+glossaryName = "GLYPHS"
+glossarySize = Vector2i(620, 720)
+
+[node name="VSeparator2" type="VSeparator" parent="Options Buttons"]
+layout_mode = 2
+theme = ExtResource("2_rmsdg")
+
+[node name="SitelenGlossaryButton" type="Button" parent="Options Buttons"]
+layout_mode = 2
+theme = ExtResource("1_g7e1w")
+text = "Sitelen Translator"
+script = ExtResource("3_y3uoq")
+glossaryFile = "res://GlossaryBook/sitelen_glossary.json"
+glossaryName = "SITELEN"
+glossarySize = Vector2i(520, 620)
+
+[node name="AddMapButton" type="Button" parent="Options Buttons"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("1_g7e1w")
+text = "+ Map"
+script = ExtResource("4_7hlun")
+
+[node name="AudioClick" type="AudioStreamPlayer" parent="Options Buttons/AddMapButton"]
+stream = ExtResource("5_f4jyx")
+pitch_scale = 2.0
+
+[node name="VSeparator3" type="VSeparator" parent="Options Buttons"]
+layout_mode = 2
+theme = ExtResource("2_rmsdg")
+
+[node name="ToggleMusicButton" type="Button" parent="Options Buttons"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_g7e1w")
+text = "Toggle Music"
+script = ExtResource("6_5k4kf")

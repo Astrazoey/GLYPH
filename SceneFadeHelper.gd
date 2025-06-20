@@ -17,6 +17,7 @@ func fade_in(scene_parent, fade_duration):
 	fade_rect.anchor_top = 0
 	fade_rect.anchor_right = 1
 	fade_rect.anchor_bottom = 1
+	fade_rect.z_index = 101
 	scene_parent.add_child(fade_rect)
 	
 	var from_color = Color(0,0,0,1)
@@ -36,7 +37,7 @@ func fade_in(scene_parent, fade_duration):
 func fadeScene(scene_parent : Node, audio, new_scene, fade_duration):
 	
 	# Comment Out to Use User Specified
-	fade_duration = custom_fade_duration
+	#fade_duration = custom_fade_duration
 	
 	# Play sound
 	if(audio != null):
@@ -51,6 +52,7 @@ func fadeScene(scene_parent : Node, audio, new_scene, fade_duration):
 	fade_rect.anchor_top = 0
 	fade_rect.anchor_right = 1
 	fade_rect.anchor_bottom = 1
+	fade_rect.z_index = 101
 	scene_parent.add_child(fade_rect)
 
 	# Create tween for fade to black
@@ -67,3 +69,34 @@ func fadeScene(scene_parent : Node, audio, new_scene, fade_duration):
 	# Change to the new scene
 	if(new_scene != null):
 		scene_parent.get_tree().change_scene_to_file(new_scene)
+
+func fade_out_only(parent, fade_duration):
+	# Comment Out to Use User Specified
+	#fade_duration = custom_fade_duration
+	
+	# Play sound
+
+	parent = parent.get_tree().current_scene
+
+	var fade_rect = ColorRect.new()
+	fade_rect.color = Color(0, 0, 0, 0)  # Black but fully transparent initially
+	fade_rect.size = Vector2(2000, 2000)
+	fade_rect.anchor_left = 0
+	fade_rect.anchor_top = 0
+	fade_rect.anchor_right = 1
+	fade_rect.anchor_bottom = 1
+	fade_rect.z_index = 101
+	parent.add_child(fade_rect)
+
+	# Create tween for fade to black
+	var from_color = Color(0,0,0,0)
+	var to_color = Color(0,0,0,1)
+	fade_rect.color = from_color
+
+	var tween = parent.create_tween()
+	tween.tween_property(fade_rect, "color", to_color, fade_duration)
+
+	# Wait for both fade and sound to finish
+	await tween.finished
+	
+	fade_rect = Color(0,0,0,0)

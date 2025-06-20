@@ -21,9 +21,9 @@ func _ready():
 		else:
 			var metadata = SaveGameHelper.loadAllSlotMetadata()
 			if str(i) in metadata:
-				saveSlot.text = "Load Save Slot %d | Artifacts: %d" % [(i+1), metadata.get(str(i), {}).get("artifactCount", 0)]
+				saveSlot.text = "Load Slot %d | Artifacts: %d" % [(i+1), metadata.get(str(i), {}).get("artifactCount", 0)]
 			else:
-				saveSlot.text = "Load Save Slot %d" % [(i+1)]
+				saveSlot.text = "Load Slot %d" % [(i+1)]
 			saveSlot.connect("pressed", manageSave.bind(i, false))
 		add_child(saveSlot)
 
@@ -31,10 +31,17 @@ func manageSave(slot, isNew):
 	var outputVariables = {}
 	
 	if(isNew):
-		outputVariables = SaveGameHelper.loadGame(slot, SaveGameHelper.startDefaultSave(slot))
+		SaveGameHelper.startDefaultSave(slot)
 	else:
-		outputVariables = SaveGameHelper.loadGame(slot, SaveGameHelper.startDefaultSave(slot))
-		StoredElements.saveData = outputVariables
-	StoredElements.saveSlot = outputVariables.saveSlot
+		SaveGameHelper.loadGame(slot)
+	#print(outputVariables)
+	#StoredElements.saveData = outputVariables
+	#StoredElements.saveSlot = outputVariables.saveSlot
+	#StoredElements.gold = outputVariables.gold
+	#StoredElements.artifactCount = outputVariables.artifactCount
+	#StoredElements.weapons = outputVariables.weapons
+	#StoredElements.weaponStrengths = outputVariables.weaponStrengths
+	#StoredElements.highestDifficultyWinCount = outputVariables.winCount
+	
 	#print(StoredElements.saveSlot)
-	SceneFadeHelper.fadeScene(self, AudioManager.get_node("Sounds/GameStart"), "res://MenuUI/setup_menu.tscn", 3)
+	SceneFadeHelper.fadeScene(self, AudioManager.get_node("Sounds/GameStart"), "res://MenuUI/setup_menu.tscn", 1)

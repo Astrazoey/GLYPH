@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwp3u5e71kehw"]
+[gd_scene load_steps=14 format=3 uid="uid://bwp3u5e71kehw"]
 
-[ext_resource type="Script" path="res://MenuInputs.gd" id="1_xlsc2"]
 [ext_resource type="Script" path="res://DungeonGeneration.gd" id="1_xq7bs"]
-[ext_resource type="Script" path="res://Player.gd" id="3_5wype"]
+[ext_resource type="PackedScene" uid="uid://dbnghq7no2llm" path="res://player.tscn" id="2_738dl"]
 [ext_resource type="AudioStream" uid="uid://5rcx3id6k0c3" path="res://Sounds/click.ogg" id="4_n3ucy"]
 [ext_resource type="AudioStream" uid="uid://dbj6cesdlu6rm" path="res://Sounds/break_item.ogg" id="4_vjnsl"]
 [ext_resource type="AudioStream" uid="uid://2xwxskhuwsxn" path="res://Sounds/win.ogg" id="5_idohi"]
@@ -14,45 +13,21 @@
 [ext_resource type="AudioStream" uid="uid://car37qfn8ta7n" path="res://Sounds/get_item.ogg" id="8_6nj1g"]
 [ext_resource type="AudioStream" uid="uid://c6287dhtsko52" path="res://Sounds/teleport.ogg" id="8_86m7m"]
 
-[sub_resource type="Theme" id="Theme_3caaf"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_ufjfd"]
 font_size = 12
 outline_color = Color(0.14902, 0.14902, 0.14902, 1)
 
-[sub_resource type="GDScript" id="GDScript_muu0p"]
-script/source = "extends Node2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-"
-
 [node name="Node2D" type="Node2D"]
 position = Vector2(-1, 0)
-script = ExtResource("1_xlsc2")
 
 [node name="DungeonGeneration" type="Node" parent="."]
 script = ExtResource("1_xq7bs")
 
-[node name="Player" type="Node2D" parent="DungeonGeneration"]
-script = ExtResource("3_5wype")
-
-[node name="PlayerInformation" type="Label" parent="DungeonGeneration/Player"]
-offset_top = 599.0
-offset_right = 162.0
-offset_bottom = 649.0
-theme = SubResource("Theme_3caaf")
-
-[node name="RoomSymbols" type="Node2D" parent="DungeonGeneration/Player"]
+[node name="Player" parent="DungeonGeneration" instance=ExtResource("2_738dl")]
+visible = false
 
 [node name="Master" type="Node2D" parent="DungeonGeneration"]
+visible = false
 
 [node name="MasterInformation" type="Label" parent="DungeonGeneration/Master"]
 visible = false
@@ -65,7 +40,7 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="MasterMenu" type="Node2D" parent="DungeonGeneration/Master"]
-script = SubResource("GDScript_muu0p")
+visible = false
 
 [node name="Sounds" type="Node" parent="DungeonGeneration"]
 
