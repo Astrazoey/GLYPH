@@ -30,12 +30,15 @@ func loadGame(slot: int):
 	file.close()
 
 	if saveData:
-		StoredElements.saveSlot = saveData.get("saveSlot", -1)
+		StoredElements.saveSlot = saveData.get("saveSlot", slot)
 		StoredElements.gold = saveData.get("gold", 0)
 		StoredElements.artifactCount = saveData.get("artifactCount", 0)
 		StoredElements.weapons = saveData.get("weapons", [])
 		for i in StoredElements.weapons.size():
-			StoredElements.weapons[i] = int(StoredElements.weapons[i])  # ensures they’re clean ints
+			if(StoredElements.weapons[i] != null):
+				StoredElements.weapons[i] = int(StoredElements.weapons[i])  # ensures they’re clean ints
+			else:
+				StoredElements.weapons[i] = -1
 		StoredElements.weaponStrengths = saveData.get("weaponStrengths", [])
 		StoredElements.highestDifficultyWinCount = saveData.get("winCount", 0)
 	else:

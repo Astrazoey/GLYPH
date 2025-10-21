@@ -34,14 +34,6 @@ func manageSave(slot, isNew):
 		SaveGameHelper.startDefaultSave(slot)
 	else:
 		SaveGameHelper.loadGame(slot)
-	#print(outputVariables)
-	#StoredElements.saveData = outputVariables
-	#StoredElements.saveSlot = outputVariables.saveSlot
-	#StoredElements.gold = outputVariables.gold
-	#StoredElements.artifactCount = outputVariables.artifactCount
-	#StoredElements.weapons = outputVariables.weapons
-	#StoredElements.weaponStrengths = outputVariables.weaponStrengths
-	#StoredElements.highestDifficultyWinCount = outputVariables.winCount
 	
 	#print(StoredElements.saveSlot)
 	SceneFadeHelper.fadeScene(self, AudioManager.get_node("Sounds/GameStart"), "res://MenuUI/setup_menu.tscn", 1)
